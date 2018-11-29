@@ -34,7 +34,8 @@
             this.btnColorStatistics = new System.Windows.Forms.Button();
             this.btnMenu4 = new System.Windows.Forms.Button();
             this.btnMenu6 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnStatistics = new System.Windows.Forms.Button();
+            this.btnOddeorEven = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,22 +98,33 @@
             this.btnMenu6.UseVisualStyleBackColor = true;
             this.btnMenu6.Click += new System.EventHandler(this.btnMenu6_Click);
             // 
-            // button1
+            // btnStatistics
             // 
-            this.button1.Location = new System.Drawing.Point(580, 260);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "번호별 통계";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnStatistics.Location = new System.Drawing.Point(580, 260);
+            this.btnStatistics.Name = "btnStatistics";
+            this.btnStatistics.Size = new System.Drawing.Size(99, 23);
+            this.btnStatistics.TabIndex = 17;
+            this.btnStatistics.Text = "번호별 통계";
+            this.btnStatistics.UseVisualStyleBackColor = true;
+            this.btnStatistics.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnOddeorEven
+            // 
+            this.btnOddeorEven.Location = new System.Drawing.Point(580, 317);
+            this.btnOddeorEven.Name = "btnOddeorEven";
+            this.btnOddeorEven.Size = new System.Drawing.Size(99, 23);
+            this.btnOddeorEven.TabIndex = 18;
+            this.btnOddeorEven.Text = "홀수,짝수 통계";
+            this.btnOddeorEven.UseVisualStyleBackColor = true;
+            this.btnOddeorEven.Click += new System.EventHandler(this.btnOddeorEven_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnOddeorEven);
+            this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnMenu6);
             this.Controls.Add(this.btnMenu4);
             this.Controls.Add(this.btnColorStatistics);
@@ -134,7 +146,8 @@
         private System.Windows.Forms.Button btnColorStatistics;
         private System.Windows.Forms.Button btnMenu4;
         private System.Windows.Forms.Button btnMenu6;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnStatistics;
+        private System.Windows.Forms.Button btnOddeorEven;
     }
 }
 

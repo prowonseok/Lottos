@@ -91,6 +91,12 @@
       <DependentUpon>FrmMenu6.cs</DependentUpon>
     </Compile>
     <Compile Include="Lotto.cs" />
+    <Compile Include="LottoOddorEven.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LottoOddorEven.Designer.cs">
+      <DependentUpon>LottoOddorEven.cs</DependentUpon>
+    </Compile>
     <Compile Include="LottoStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenu6.resx">
       <DependentUpon>FrmMenu6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LottoOddorEven.resx">
+      <DependentUpon>LottoOddorEven.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LottoStatistics.resx">
       <DependentUpon>LottoStatistics.cs</DependentUpon>

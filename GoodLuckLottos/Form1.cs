@@ -248,5 +248,11 @@ namespace GoodLuckLottos
             LottoStatistics r = new LottoStatistics(lottoList);
             r.Show();
         }
+
+        private void btnOddeorEven_Click(object sender, EventArgs e)
+        {
+            LottoOddorEven loe = new LottoOddorEven(lottoList);
+            loe.Show();
+        }
     }
 }
