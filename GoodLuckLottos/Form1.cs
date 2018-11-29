@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HtmlAgilityPack;
+
 
 namespace GoodLuckLottos
 {
@@ -240,6 +241,12 @@ namespace GoodLuckLottos
         {
             FrmMenu4 fm4 = new FrmMenu4(lottoList);
             fm4.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LottoStatistics r = new LottoStatistics(lottoList);
+            r.Show();
         }
     }
 }
