@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using HtmlAgilityPack;
 
 namespace GoodLuckLottos
@@ -171,30 +173,42 @@ namespace GoodLuckLottos
         }
 
         //FormColorStatistics의 로드 이벤트. - 예준
+        string[] rangeArr;
+        int countAll = 0;
+        string[] rangeName = { "1-10번", "11-20번", "21-30번", "31-40번", "41-45번" };
         private void FormColorStatistics_Load(object sender, EventArgs e)
         {
             int[] caseCount = new int[5];
+            rangeArr = new string[5];
+            
             formColorStatistics.chartPie.Series[0].Name = "Lotto";
             formColorStatistics.chartPie.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            formColorStatistics.chartPie.Series[0].Points.AddXY("1~10", 100);
+            formColorStatistics.chartPie.Series[0].LabelForeColor = Color.White;
+            formColorStatistics.chartPie.Titles.Add("색상통계");
+            formColorStatistics.chartPie.Titles[0].Font = new Font(new FontFamily(GenericFontFamilies.SansSerif), 20, FontStyle.Bold);
             
+
             foreach (var item in lottoList)
             {
                 //item의 Lotto1~6까지의 멤버변수에서 1~10까지의 값이 나올때 caseCount ++ 하기
-                CountOne(0, item, 0, 11);
-                //caseCount[1] = CountOne(item, 10, 21);
-                //caseCount[2] = CountOne(item, 20, 31);
-                //caseCount[3] = CountOne(item, 30, 41);
-                //caseCount[4] = CountOne(item, 40, 51);
+                caseCount[0] = RangeCount(caseCount[0], item, 0, 11);
+                caseCount[1] = RangeCount(caseCount[1], item, 10, 21);
+                caseCount[2] = RangeCount(caseCount[2], item, 20, 31);
+                caseCount[3] = RangeCount(caseCount[3], item, 30, 41);
+                caseCount[4] = RangeCount(caseCount[4], item, 40, 46);
             }
-            MessageBox.Show(caseCount[0].ToString());
+            countAll = caseCount[0] + caseCount[1] + caseCount[2] + caseCount[3] + caseCount[4];
+            for (int i = 0; i < rangeArr.Length; i++)
+            {
+                rangeArr[i] = (Math.Round((double)caseCount[i] / countAll * 100, 1, MidpointRounding.AwayFromZero))+"%";
+            }
+            formColorStatistics.chartPie.Series[0].Points.DataBindXY(rangeArr, caseCount);
+            
 
         }
 
-        //로또 리스트에서 카운트하는 메서드 - 예준
-        private void CountOne(int caseCount, Lotto item, int start, int end)
+        private int RangeCount(int caseCount, Lotto item, int start, int end)
         {
-            
             if (item.LottoNo1 > start && item.LottoNo1 < end)
             {
                 caseCount++;
@@ -219,15 +233,30 @@ namespace GoodLuckLottos
             {
                 caseCount++;
             }
+            return caseCount;
         }
+
 
         //툴팁 - 예준
         ToolTip toolTipChartPie = new ToolTip();
-
+        Point? previousPosition = null;
         //FormColorStatistics의 차트 MouseMove 이벤트 - 예준
         private void ChartPie_MouseMove(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            Point currentPosition = e.Location;
+            if (previousPosition.HasValue && currentPosition == previousPosition)
+            {
+                return;
+            }
+            toolTipChartPie.RemoveAll();
+            previousPosition = currentPosition;
+            var hit = formColorStatistics.chartPie.HitTest(currentPosition.X, currentPosition.Y, ChartElementType.DataPoint);
+            if (hit.ChartElementType == ChartElementType.DataPoint)
+            {
+                var xValue = rangeName[hit.PointIndex];
+                var yValue = (hit.Object as DataPoint).YValues[0];
+                toolTipChartPie.Show(xValue + "\n" + yValue +"("+Math.Round((yValue / countAll *100), 1,MidpointRounding.AwayFromZero) + "%)" ,formColorStatistics.chartPie, new Point(currentPosition.X + 10, currentPosition.Y + 15));
+            }
         }
 
         private void btnMenu6_Click(object sender, EventArgs e)

@@ -44,10 +44,11 @@
             this.chartPie.Location = new System.Drawing.Point(12, 12);
             this.chartPie.Name = "chartPie";
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartPie.Series.Add(series1);
-            this.chartPie.Size = new System.Drawing.Size(442, 390);
+            this.chartPie.Size = new System.Drawing.Size(748, 390);
             this.chartPie.TabIndex = 0;
             this.chartPie.Text = "chart1";
             // 
