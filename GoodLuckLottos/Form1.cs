@@ -241,5 +241,11 @@ namespace GoodLuckLottos
             FrmMenu4 fm4 = new FrmMenu4(lottoList);
             fm4.ShowDialog();
         }
+
+        private void btnMenu7_Click(object sender, EventArgs e)
+        {
+            FrmMenu7 fm7 = new FrmMenu7(lottoList);
+            fm7.ShowDialog();
+        }
     }
 }

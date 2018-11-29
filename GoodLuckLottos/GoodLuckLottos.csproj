@@ -90,6 +90,12 @@
     <Compile Include="FrmMenu6.Designer.cs">
       <DependentUpon>FrmMenu6.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMenu7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMenu7.Designer.cs">
+      <DependentUpon>FrmMenu7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lotto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenu6.resx">
       <DependentUpon>FrmMenu6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMenu7.resx">
+      <DependentUpon>FrmMenu7.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
