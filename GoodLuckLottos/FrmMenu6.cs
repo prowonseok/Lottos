@@ -26,8 +26,8 @@ namespace GoodLuckLottos
                 cbbFront.Items.Add(lottoList.Count - i);
                 cbbBack.Items.Add(lottoList.Count - i);
             }
-            cbbFront.Text = lottoList[0].WinningDateNo.ToString();
-            cbbBack.Text = lottoList[lottoList.Count - 1].WinningDateNo.ToString();
+            cbbBack.Text = lottoList[0].WinningDateNo.ToString();
+            cbbFront.Text = lottoList[lottoList.Count - 1].WinningDateNo.ToString();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
