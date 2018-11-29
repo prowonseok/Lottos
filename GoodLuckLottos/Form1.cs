@@ -22,6 +22,7 @@ namespace GoodLuckLottos
         SqlConnection connection;
         SqlDataReader sdr;
         List<Lotto> lottoList = new List<Lotto>();
+        
         private int winningDateNumber = 1;
         public Form1()
         {
@@ -173,29 +174,38 @@ namespace GoodLuckLottos
         }
 
         //FormColorStatistics의 로드 이벤트. - 예준
-        string[] rangeArr;
-        int countAll = 0;
-        string[] rangeName = { "1-10번", "11-20번", "21-30번", "31-40번", "41-45번" };
+        private string[] rangeArr;
+        private int countAll = 0;
+        private int[] caseCount;
+
+        private string[] rangeName = { "1-10", "11-20", "21-30", "31-40", "41-45" };
+        public string[] GetRangeName
+        {
+            get
+            {
+                return rangeName;
+            }
+        }
         private void FormColorStatistics_Load(object sender, EventArgs e)
         {
-            int[] caseCount = new int[5];
+            caseCount = new int[5];
             rangeArr = new string[5];
             
-            formColorStatistics.chartPie.Series[0].Name = "Lotto";
+            formColorStatistics.chartPie.Series[0].Name = "LottoChartPie";
             formColorStatistics.chartPie.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             formColorStatistics.chartPie.Series[0].LabelForeColor = Color.White;
             formColorStatistics.chartPie.Titles.Add("색상통계");
             formColorStatistics.chartPie.Titles[0].Font = new Font(new FontFamily(GenericFontFamilies.SansSerif), 20, FontStyle.Bold);
-            
 
             foreach (var item in lottoList)
             {
                 //item의 Lotto1~6까지의 멤버변수에서 1~10까지의 값이 나올때 caseCount ++ 하기
-                caseCount[0] = RangeCount(caseCount[0], item, 0, 11);
-                caseCount[1] = RangeCount(caseCount[1], item, 10, 21);
-                caseCount[2] = RangeCount(caseCount[2], item, 20, 31);
-                caseCount[3] = RangeCount(caseCount[3], item, 30, 41);
-                caseCount[4] = RangeCount(caseCount[4], item, 40, 46);
+                //caseCount[0] = RangeCount(caseCount[0], item, 0, 11);
+                caseCount[0] = Counter(caseCount[0], item, 0, 11, false);
+                caseCount[1] = Counter(caseCount[1], item, 10, 21, false);
+                caseCount[2] = Counter(caseCount[2], item, 20, 31, false);
+                caseCount[3] = Counter(caseCount[3], item, 30, 41, false);
+                caseCount[4] = Counter(caseCount[4], item, 40, 46, false);
             }
             countAll = caseCount[0] + caseCount[1] + caseCount[2] + caseCount[3] + caseCount[4];
             for (int i = 0; i < rangeArr.Length; i++)
@@ -203,11 +213,16 @@ namespace GoodLuckLottos
                 rangeArr[i] = (Math.Round((double)caseCount[i] / countAll * 100, 1, MidpointRounding.AwayFromZero))+"%";
             }
             formColorStatistics.chartPie.Series[0].Points.DataBindXY(rangeArr, caseCount);
-            
-
+            //원형 차트의 범례 설정.
+            int k = 0;
+            foreach (DataPoint item in formColorStatistics.chartPie.Series[0].Points)
+            {
+                item.LegendText = rangeName[k] + " 구간";
+                k++;
+            }
         }
 
-        private int RangeCount(int caseCount, Lotto item, int start, int end)
+        public int Counter(int caseCount, Lotto item, int start, int end, bool bonusTogle)
         {
             if (item.LottoNo1 > start && item.LottoNo1 < end)
             {
@@ -233,6 +248,14 @@ namespace GoodLuckLottos
             {
                 caseCount++;
             }
+            if (bonusTogle)
+            {
+                if (item.LottoBonusNo > start && item.LottoBonusNo < end)
+                {
+                    caseCount++;
+                }
+            }
+
             return caseCount;
         }
 
@@ -255,7 +278,7 @@ namespace GoodLuckLottos
             {
                 var xValue = rangeName[hit.PointIndex];
                 var yValue = (hit.Object as DataPoint).YValues[0];
-                toolTipChartPie.Show(xValue + "\n" + yValue +"("+Math.Round((yValue / countAll *100), 1,MidpointRounding.AwayFromZero) + "%)" ,formColorStatistics.chartPie, new Point(currentPosition.X + 10, currentPosition.Y + 15));
+                toolTipChartPie.Show(xValue + " 번\n" + yValue +"("+Math.Round((yValue / countAll *100), 1,MidpointRounding.AwayFromZero) + "%)" ,formColorStatistics.chartPie, new Point(currentPosition.X + 10, currentPosition.Y + 15));
             }
         }
 
@@ -270,5 +293,14 @@ namespace GoodLuckLottos
             FrmMenu4 fm4 = new FrmMenu4(lottoList);
             fm4.ShowDialog();
         }
+
+        //구간별 출현횟수 폼 이동버튼 이벤트 핸들러 - 예준
+        private void btnOcrPerSec_Click(object sender, EventArgs e)
+        {
+            FormOccurrencesPerSection fops = new FormOccurrencesPerSection(lottoList);
+            fops.Show();
+        }
+
+        
     }
 }
