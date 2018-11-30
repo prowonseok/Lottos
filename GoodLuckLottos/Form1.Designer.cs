@@ -156,7 +156,6 @@
         private System.Windows.Forms.Button btnMenu6;
         private System.Windows.Forms.Button btnOcrPerSec;
         private System.Windows.Forms.Button btnMenu7;
-        private System.Windows.Forms.Button btnOcrPerSec;
 
     }
 }
