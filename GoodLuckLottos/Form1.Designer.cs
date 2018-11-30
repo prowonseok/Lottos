@@ -118,6 +118,7 @@
             this.btnMenu7.TabIndex = 17;
             this.btnMenu7.Text = "button7";
             this.btnMenu7.UseVisualStyleBackColor = true;
+            this.btnMenu7.Click += new System.EventHandler(this.btnMenu7_Click);
             // 
             // btnOcrPerSec
             // 

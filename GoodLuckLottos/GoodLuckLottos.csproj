@@ -96,13 +96,13 @@
     <Compile Include="FrmMenu6.Designer.cs">
       <DependentUpon>FrmMenu6.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
+
     <Compile Include="FormMenu7.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMenu7.Designer.cs">
       <DependentUpon>FormMenu7.cs</DependentUpon>
-=======
+    </Compile>
     <Compile Include="Lotto.cs" />
     <Compile Include="LottoOddorEven.cs">
       <SubType>Form</SubType>
@@ -115,7 +115,7 @@
     </Compile>
     <Compile Include="LottoStatistics.Designer.cs">
       <DependentUpon>LottoStatistics.cs</DependentUpon>
->>>>>>> Wonseok
+
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,16 +135,16 @@
     <EmbeddedResource Include="FrmMenu6.resx">
       <DependentUpon>FrmMenu6.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
+
     <EmbeddedResource Include="FormMenu7.resx">
       <DependentUpon>FormMenu7.cs</DependentUpon>
-=======
+    </EmbeddedResource>
     <EmbeddedResource Include="LottoOddorEven.resx">
       <DependentUpon>LottoOddorEven.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LottoStatistics.resx">
       <DependentUpon>LottoStatistics.cs</DependentUpon>
->>>>>>> Wonseok
+
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
