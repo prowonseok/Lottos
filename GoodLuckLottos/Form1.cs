@@ -296,7 +296,7 @@ namespace GoodLuckLottos
 
         private void btnMenu7_Click(object sender, EventArgs e)
         {
-            FrmMenu7 fm7 = new FrmMenu7(lottoList);
+            FormMenu7 fm7 = new FormMenu7(lottoList);
             fm7.ShowDialog();
         }
 

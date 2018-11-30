@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace GoodLuckLottos
 {
-    public partial class FrmMenu7 : Form
+    public partial class FormMenu7 : Form
     {
         List<Lotto> lottoList = new List<Lotto>();
-        public FrmMenu7(List<Lotto> lottoList)
+        public FormMenu7(List<Lotto> lottoList)
         {
             this.lottoList = lottoList;
             InitializeComponent();

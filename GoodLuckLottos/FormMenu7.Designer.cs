@@ -1,6 +1,6 @@
 ﻿namespace GoodLuckLottos
 {
-    partial class FrmMenu7
+    partial class FormMenu7
     {
         /// <summary>
         /// Required designer variable.
