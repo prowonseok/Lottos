@@ -294,14 +294,9 @@ namespace GoodLuckLottos
         {
             FrmMenu4 fm4 = new FrmMenu4(lottoList);
             fm4.ShowDialog();
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LottoStatistics r = new LottoStatistics(lottoList);
-            r.Show();
-        }
+        }     
+       
+        
 
         private void btnOddeorEven_Click(object sender, EventArgs e)
         {
@@ -309,14 +304,17 @@ namespace GoodLuckLottos
             loe.Show();
         }
 
-        //구간별 출현횟수 폼 이동버튼 이벤트 핸들러 - 예준
+
         private void btnOcrPerSec_Click(object sender, EventArgs e)
         {
             FormOccurrencesPerSection fops = new FormOccurrencesPerSection(lottoList);
             fops.Show();
         }
 
-        
-
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            LottoStatistics r = new LottoStatistics(lottoList);
+            r.Show();
+        }
     }
 }
