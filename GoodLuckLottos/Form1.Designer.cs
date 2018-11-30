@@ -92,7 +92,7 @@
             // 
             // btnMenu6
             // 
-            this.btnMenu6.Location = new System.Drawing.Point(580, 178);
+            this.btnMenu6.Location = new System.Drawing.Point(580, 131);
             this.btnMenu6.Name = "btnMenu6";
             this.btnMenu6.Size = new System.Drawing.Size(75, 23);
             this.btnMenu6.TabIndex = 16;
