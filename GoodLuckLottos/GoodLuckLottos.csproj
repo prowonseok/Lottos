@@ -78,6 +78,12 @@
     <Compile Include="FormColorStatistics.Designer.cs">
       <DependentUpon>FormColorStatistics.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormOccurrencesPerSection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOccurrencesPerSection.Designer.cs">
+      <DependentUpon>FormOccurrencesPerSection.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMenu4.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormColorStatistics.resx">
       <DependentUpon>FormColorStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOccurrencesPerSection.resx">
+      <DependentUpon>FormOccurrencesPerSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenu4.resx">
       <DependentUpon>FrmMenu4.cs</DependentUpon>

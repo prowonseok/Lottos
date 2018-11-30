@@ -34,8 +34,12 @@
             this.btnColorStatistics = new System.Windows.Forms.Button();
             this.btnMenu4 = new System.Windows.Forms.Button();
             this.btnMenu6 = new System.Windows.Forms.Button();
+
             this.btnStatistics = new System.Windows.Forms.Button();
             this.btnOddeorEven = new System.Windows.Forms.Button();
+
+            this.btnOcrPerSec = new System.Windows.Forms.Button();
+
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,6 +102,7 @@
             this.btnMenu6.UseVisualStyleBackColor = true;
             this.btnMenu6.Click += new System.EventHandler(this.btnMenu6_Click);
             // 
+
             // btnStatistics
             // 
             this.btnStatistics.Location = new System.Drawing.Point(580, 260);
@@ -117,14 +122,30 @@
             this.btnOddeorEven.Text = "홀수,짝수 통계";
             this.btnOddeorEven.UseVisualStyleBackColor = true;
             this.btnOddeorEven.Click += new System.EventHandler(this.btnOddeorEven_Click);
+
+            // btnOcrPerSec
+            // 
+            this.btnOcrPerSec.Location = new System.Drawing.Point(325, 375);
+            this.btnOcrPerSec.Name = "btnOcrPerSec";
+            this.btnOcrPerSec.Size = new System.Drawing.Size(123, 23);
+            this.btnOcrPerSec.TabIndex = 17;
+            this.btnOcrPerSec.Text = "구간별 출현 횟수";
+            this.btnOcrPerSec.UseVisualStyleBackColor = true;
+            this.btnOcrPerSec.Click += new System.EventHandler(this.btnOcrPerSec_Click);
+
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnOddeorEven);
             this.Controls.Add(this.btnStatistics);
+
+            this.ClientSize = new System.Drawing.Size(800, 463);
+            this.Controls.Add(this.btnOcrPerSec);
+
             this.Controls.Add(this.btnMenu6);
             this.Controls.Add(this.btnMenu4);
             this.Controls.Add(this.btnColorStatistics);
@@ -146,8 +167,12 @@
         private System.Windows.Forms.Button btnColorStatistics;
         private System.Windows.Forms.Button btnMenu4;
         private System.Windows.Forms.Button btnMenu6;
+
         private System.Windows.Forms.Button btnStatistics;
         private System.Windows.Forms.Button btnOddeorEven;
+
+        private System.Windows.Forms.Button btnOcrPerSec;
+
     }
 }
 
