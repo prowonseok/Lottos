@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using HtmlAgilityPack;
+
 
 namespace GoodLuckLottos
 {
@@ -291,21 +293,38 @@ namespace GoodLuckLottos
         private void btnMenu4_Click(object sender, EventArgs e)
         {
             FrmMenu4 fm4 = new FrmMenu4(lottoList);
+<<<<<<< HEAD
             fm4.ShowDialog(); 
         }
+=======
+            fm4.ShowDialog();
+        }     
+       
+        
+>>>>>>> Wonseok
 
-        private void btnMenu7_Click(object sender, EventArgs e)
+        private void btnOddeorEven_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             FormMenu7 fm7 = new FormMenu7(lottoList);
             fm7.ShowDialog();
+=======
+            LottoOddorEven loe = new LottoOddorEven(lottoList);
+            loe.Show();
+>>>>>>> Wonseok
         }
 
-        //구간별 출현횟수 폼 이동버튼 이벤트 핸들러 - 예준
+
         private void btnOcrPerSec_Click(object sender, EventArgs e)
         {
             FormOccurrencesPerSection fops = new FormOccurrencesPerSection(lottoList);
             fops.Show();
         }
-        
+
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            LottoStatistics r = new LottoStatistics(lottoList);
+            r.Show();
+        }
     }
 }
