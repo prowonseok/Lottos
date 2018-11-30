@@ -47,7 +47,7 @@ namespace GoodLuckLottos
 
             int countNum = lottoList.Count - 1;
 
-
+             
             while (weekNum > 0)
             {
                 string[] listList = new string[]{
