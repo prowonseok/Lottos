@@ -294,13 +294,18 @@ namespace GoodLuckLottos
             fm4.ShowDialog();
         }
 
+        private void btnMenu7_Click(object sender, EventArgs e)
+        {
+            FrmMenu7 fm7 = new FrmMenu7(lottoList);
+            fm7.ShowDialog();
+        }
+
         //구간별 출현횟수 폼 이동버튼 이벤트 핸들러 - 예준
         private void btnOcrPerSec_Click(object sender, EventArgs e)
         {
             FormOccurrencesPerSection fops = new FormOccurrencesPerSection(lottoList);
             fops.Show();
         }
-
         
     }
 }
