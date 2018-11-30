@@ -293,15 +293,20 @@ namespace GoodLuckLottos
         private void btnMenu4_Click(object sender, EventArgs e)
         {
             FrmMenu4 fm4 = new FrmMenu4(lottoList);
-            fm4.ShowDialog();
-        }     
+
+            fm4.ShowDialog(); 
+        }
+
        
         
 
+
         private void btnOddeorEven_Click(object sender, EventArgs e)
         {
+            
             LottoOddorEven loe = new LottoOddorEven(lottoList);
             loe.Show();
+
         }
 
 
@@ -315,6 +320,12 @@ namespace GoodLuckLottos
         {
             LottoStatistics r = new LottoStatistics(lottoList);
             r.Show();
+        }
+
+        private void btnMenu7_Click(object sender, EventArgs e)
+        {
+            FormMenu7 frm7 = new FormMenu7(lottoList);
+            frm7.Show();
         }
     }
 }
