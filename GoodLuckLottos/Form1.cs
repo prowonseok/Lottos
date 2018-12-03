@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using HtmlAgilityPack;
-
+using System.Xml;
 
 namespace GoodLuckLottos
 {
@@ -24,7 +24,7 @@ namespace GoodLuckLottos
         SqlConnection connection;
         SqlDataReader sdr;
         List<Lotto> lottoList = new List<Lotto>();
-        
+        XmlTextWriter xmlTextWriter;
         private int winningDateNumber = 1;
         public Form1()
         {
@@ -115,7 +115,7 @@ namespace GoodLuckLottos
                 winningDateNumber++;
             }
             connection.Close();
-            lottoGridView.DataSource = lottoList;
+            
         }
 
         //DB의 저장프로시저의 빈번한 사용을 대비한 저장프로시저 Command 메서드.
@@ -151,13 +151,13 @@ namespace GoodLuckLottos
             connection.Close();
             //리스트를 내림차순으로 정렬.(가장 최근의 값부터 출력된다.)
             lottoList.Reverse();
-            lottoGridView.DataSource = lottoList;
         }
 
         //전체 출력하는 메서드.
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             DisplayAll();
+            lottoGridView.DataSource = lottoList;
         } 
         #endregion
 
@@ -326,6 +326,68 @@ namespace GoodLuckLottos
         {
             FormMenu7 frm7 = new FormMenu7(lottoList);
             frm7.Show();
+        }
+
+        private void btnXml_Click(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlNode root = doc.CreateElement("Lottos");
+            doc.AppendChild(root);
+            if (lottoList.Count>0)
+            {
+                foreach (var item in lottoList)
+                {
+                    XmlElement lotto = doc.CreateElement("Lotto");
+                    lotto.SetAttribute("WindateNo", item.WinningDateNo.ToString());
+                    root.AppendChild(lotto);
+
+                    XmlElement no1 = doc.CreateElement("No1");
+                    no1.InnerText = item.LottoNo1.ToString();
+                    lotto.AppendChild(no1);
+
+                    XmlElement no2 = doc.CreateElement("No2");
+                    no2.InnerText = item.LottoNo2.ToString();
+                    lotto.AppendChild(no2);
+
+                    XmlElement no3 = doc.CreateElement("No3");
+                    no3.InnerText = item.LottoNo3.ToString();
+                    lotto.AppendChild(no3);
+
+                    XmlElement no4 = doc.CreateElement("No4");
+                    no4.InnerText = item.LottoNo4.ToString();
+                    lotto.AppendChild(no4);
+
+                    XmlElement no5 = doc.CreateElement("No5");
+                    no5.InnerText = item.LottoNo5.ToString();
+                    lotto.AppendChild(no5);
+
+                    XmlElement no6 = doc.CreateElement("No6");
+                    no6.InnerText = item.LottoNo6.ToString();
+                    lotto.AppendChild(no6);
+
+                    XmlElement bonusNo = doc.CreateElement("BonusNo");
+                    bonusNo.InnerText = item.LottoBonusNo.ToString();
+                    lotto.AppendChild(bonusNo);
+                }
+            }
+            
+            if (lottoSaveDlg.ShowDialog() != DialogResult.Cancel)
+            {
+                string fileName = lottoSaveDlg.FileName;
+                try
+                {
+                    xmlTextWriter = new XmlTextWriter(fileName, Encoding.UTF8);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                xmlTextWriter.Formatting = Formatting.Indented;
+                doc.WriteContentTo(xmlTextWriter);
+                xmlTextWriter.Flush();
+                xmlTextWriter.Close();
+            }
         }
     }
 }

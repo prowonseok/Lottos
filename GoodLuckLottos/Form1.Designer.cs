@@ -39,6 +39,7 @@
             this.btnOcrPerSec = new System.Windows.Forms.Button();
             this.btnStatistics = new System.Windows.Forms.Button();
             this.btnXml = new System.Windows.Forms.Button();
+            this.lottoSaveDlg = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(78, 23);
             this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "저장";
+            this.btnSave.Text = "갱신";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -149,6 +150,11 @@
             this.btnXml.TabIndex = 20;
             this.btnXml.Text = "Xml변환";
             this.btnXml.UseVisualStyleBackColor = true;
+            this.btnXml.Click += new System.EventHandler(this.btnXml_Click);
+            // 
+            // lottoSaveDlg
+            // 
+            this.lottoSaveDlg.Filter = "xml 파일|*.xml";
             // 
             // Form1
             // 
@@ -190,6 +196,7 @@
         private System.Windows.Forms.Button btnOcrPerSec;
         private System.Windows.Forms.Button btnStatistics;
         private System.Windows.Forms.Button btnXml;
+        private System.Windows.Forms.SaveFileDialog lottoSaveDlg;
     }
 }
 
