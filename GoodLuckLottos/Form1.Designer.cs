@@ -84,9 +84,9 @@
             // 
             this.btnMenu4.Location = new System.Drawing.Point(580, 73);
             this.btnMenu4.Name = "btnMenu4";
-            this.btnMenu4.Size = new System.Drawing.Size(75, 23);
+            this.btnMenu4.Size = new System.Drawing.Size(144, 23);
             this.btnMenu4.TabIndex = 15;
-            this.btnMenu4.Text = "button2";
+            this.btnMenu4.Text = "기간별 미 출현 번호";
             this.btnMenu4.UseVisualStyleBackColor = true;
             this.btnMenu4.Click += new System.EventHandler(this.btnMenu4_Click);
             // 
@@ -94,9 +94,9 @@
             // 
             this.btnMenu6.Location = new System.Drawing.Point(580, 131);
             this.btnMenu6.Name = "btnMenu6";
-            this.btnMenu6.Size = new System.Drawing.Size(75, 23);
+            this.btnMenu6.Size = new System.Drawing.Size(144, 23);
             this.btnMenu6.TabIndex = 16;
-            this.btnMenu6.Text = "button3";
+            this.btnMenu6.Text = "연속번호 출현";
             this.btnMenu6.UseVisualStyleBackColor = true;
             this.btnMenu6.Click += new System.EventHandler(this.btnMenu6_Click);
             // 
@@ -114,9 +114,9 @@
             // 
             this.btnMenu7.Location = new System.Drawing.Point(580, 196);
             this.btnMenu7.Name = "btnMenu7";
-            this.btnMenu7.Size = new System.Drawing.Size(75, 23);
+            this.btnMenu7.Size = new System.Drawing.Size(144, 23);
             this.btnMenu7.TabIndex = 17;
-            this.btnMenu7.Text = "button7";
+            this.btnMenu7.Text = "패턴분석표";
             this.btnMenu7.UseVisualStyleBackColor = true;
             this.btnMenu7.Click += new System.EventHandler(this.btnMenu7_Click);
             // 
