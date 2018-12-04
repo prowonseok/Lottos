@@ -335,12 +335,14 @@ namespace GoodLuckLottos
             frm7.Show();
         }
 
+        //현재 리스트의 내용을 XML파일로 생성하는 버튼의 이벤트핸들러. --> 예준
         private void btnXml_Click(object sender, EventArgs e)
         {
             XmlDocument doc = new XmlDocument();
             doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             XmlNode root = doc.CreateElement("Lottos");
             doc.AppendChild(root);
+            //리스트에 내용이 있을 때만 반복한다.
             if (lottoList.Count > 0)
             {
                 foreach (var item in lottoList)
@@ -379,6 +381,7 @@ namespace GoodLuckLottos
                 }
             }
 
+            //저장경로를 유저가 지정해 줄 수 있도록 SaveFileDialog를 이용.
             if (lottoSaveDlg.ShowDialog() != DialogResult.Cancel)
             {
                 string fileName = lottoSaveDlg.FileName;
