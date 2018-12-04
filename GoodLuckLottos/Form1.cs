@@ -68,7 +68,7 @@ namespace GoodLuckLottos
             sdr.Close();
             while (!check)
             {
-                string html = "http://nlotto.co.kr/gameResult.do?method=byWin&drwNo=" + winningDateNumber;
+                string html = "https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + winningDateNumber;
                 HtmlAgilityPack.HtmlWeb htmlWeb = new HtmlAgilityPack.HtmlWeb();
                 HtmlAgilityPack.HtmlDocument htmlDoc = htmlWeb.Load(html);
                 HtmlNode body = htmlDoc.DocumentNode.SelectSingleNode("//body");
@@ -78,36 +78,41 @@ namespace GoodLuckLottos
                 //1회차만 읽어와 클래스에 저장. 
                 foreach (var item in body.SelectNodes("//div")/*htmlDoc.DocumentNode.SelectNodes("//div")*/)
                 {
-                    if (item.GetAttributeValue("class", "Not Found") == "lotto_win_number mt12")
+                    if (item.GetAttributeValue("class", "Not Found") == "win_result")
                     {
-                        if (string.IsNullOrEmpty(item.ChildNodes["p"].SelectSingleNode("img").GetAttributeValue("alt", "not found")))
+                        if (String.IsNullOrEmpty(item.ChildNodes["h4"].SelectSingleNode("strong").InnerText)/*string.IsNullOrEmpty(item.ChildNodes["p"].SelectSingleNode("img").GetAttributeValue("alt", "not found"))*/)
                         {
                             check = true;
                         }
                         else
                         {
-                            Lotto lotto = new Lotto(Convert.ToInt32(item.ChildNodes["h3"].FirstChild.InnerText), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[0].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[1].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[2].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[3].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[4].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[5].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].ChildNodes[15].FirstChild.GetAttributeValue("alt", "not found")));
-
-
-                            SqlCommand command = ConnectProcedure();
-                            command.CommandText = "InsertbyLottoNo";
-
-                            command.Parameters.AddWithValue("lottoNo1", lotto.LottoNo1);
-                            command.Parameters.AddWithValue("lottoNo2", lotto.LottoNo2);
-                            command.Parameters.AddWithValue("lottoNo3", lotto.LottoNo3);
-                            command.Parameters.AddWithValue("lottoNo4", lotto.LottoNo4);
-                            command.Parameters.AddWithValue("lottoNo5", lotto.LottoNo5);
-                            command.Parameters.AddWithValue("lottoNo6", lotto.LottoNo6);
-                            command.Parameters.AddWithValue("lottoBonusNo", lotto.LottoBonusNo);
-                            int result = 0;
-                            try
+                            Lotto lotto = new Lotto
                             {
-                                result = command.ExecuteNonQuery();
-                            }
-                            catch (InvalidOperationException ex)
-                            {
-                                MessageBox.Show("연결 실패 \n" + ex.Message);
-                            }
+                                WinningDateNo = Int32.Parse(item.ChildNodes["h4"].SelectSingleNode("strong").InnerText.Replace("회", "")),
+                                LottoNo1 = Int32.Parse(item.ChildNodes["div"].FirstChild.SelectSingleNode("p").SelectNodes("span")[0].InnerText)
+                            };
+                            ////Lotto lotto = new Lotto(Convert.ToInt32(item.ChildNodes["h3"].FirstChild.InnerText), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[0].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[1].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[2].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[3].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[4].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[5].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].ChildNodes[15].FirstChild.GetAttributeValue("alt", "not found")));
+
+
+                            //SqlCommand command = ConnectProcedure();
+                            //command.CommandText = "InsertbyLottoNo";
+
+                            //command.Parameters.AddWithValue("lottoNo1", lotto.LottoNo1);
+                            //command.Parameters.AddWithValue("lottoNo2", lotto.LottoNo2);
+                            //command.Parameters.AddWithValue("lottoNo3", lotto.LottoNo3);
+                            //command.Parameters.AddWithValue("lottoNo4", lotto.LottoNo4);
+                            //command.Parameters.AddWithValue("lottoNo5", lotto.LottoNo5);
+                            //command.Parameters.AddWithValue("lottoNo6", lotto.LottoNo6);
+                            //command.Parameters.AddWithValue("lottoBonusNo", lotto.LottoBonusNo);
+                            //int result = 0;
+                            //try
+                            //{
+                            //    result = command.ExecuteNonQuery();
+                            //}
+                            //catch (InvalidOperationException ex)
+                            //{
+                            //    MessageBox.Show("연결 실패 \n" + ex.Message);
+                            //}
                         }
                         break;
                     }
