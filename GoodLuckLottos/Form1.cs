@@ -31,6 +31,7 @@ namespace GoodLuckLottos
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Form1이 Load 될 때 화면에 DB의 내용을 출력.
             DisplayAll();
         }
 
@@ -75,54 +76,53 @@ namespace GoodLuckLottos
                 //만약 다음회차가 없으면 회차가 없음을 출력.
                 //있으면 다음회차 읽어와 DB에 저장
                 //1회차만 읽어와 클래스에 저장. 
-                foreach (var item in body.SelectNodes("//div")/*htmlDoc.DocumentNode.SelectNodes("//div")*/)
+                foreach (var item in body.SelectNodes("//div"))
                 {
                     if (item.GetAttributeValue("class", "Not Found") == "win_result")
                     {
-                        if (String.IsNullOrEmpty(item.ChildNodes["h4"].SelectSingleNode("strong").InnerText))
+                        check = false;
+                        Lotto lotto = new Lotto
                         {
-                            check = true;
-                        }
-                        else
-                        {
-                            Lotto lotto = new Lotto
-                            {
-                                WinningDateNo = Int32.Parse((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1)),
-                                LottoNo1 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText),
-                                LottoNo2 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[1].InnerText),
-                                LottoNo3 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[2].InnerText),
-                                LottoNo4 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[3].InnerText),
-                                LottoNo5 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[4].InnerText),
-                                LottoNo6 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[5].InnerText),
-                                LottoBonusNo = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[1].ChildNodes["p"].SelectSingleNode("span").InnerText)
-                            };
-                            SqlCommand command = ConnectProcedure();
-                            command.CommandText = "InsertbyLottoNo";
+                            WinningDateNo = Int32.Parse((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1)),
+                            LottoNo1 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText),
+                            LottoNo2 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[1].InnerText),
+                            LottoNo3 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[2].InnerText),
+                            LottoNo4 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[3].InnerText),
+                            LottoNo5 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[4].InnerText),
+                            LottoNo6 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[5].InnerText),
+                            LottoBonusNo = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[1].ChildNodes["p"].SelectSingleNode("span").InnerText)
+                        };
+                        SqlCommand command = ConnectProcedure();
+                        command.CommandText = "InsertbyLottoNo";
 
-                            command.Parameters.AddWithValue("lottoNo1", lotto.LottoNo1);
-                            command.Parameters.AddWithValue("lottoNo2", lotto.LottoNo2);
-                            command.Parameters.AddWithValue("lottoNo3", lotto.LottoNo3);
-                            command.Parameters.AddWithValue("lottoNo4", lotto.LottoNo4);
-                            command.Parameters.AddWithValue("lottoNo5", lotto.LottoNo5);
-                            command.Parameters.AddWithValue("lottoNo6", lotto.LottoNo6);
-                            command.Parameters.AddWithValue("lottoBonusNo", lotto.LottoBonusNo);
-                            int result = 0;
-                            try
-                            {
-                                result = command.ExecuteNonQuery();
-                            }
-                            catch (InvalidOperationException ex)
-                            {
-                                MessageBox.Show("연결 실패 \n" + ex.Message);
-                            }
+                        command.Parameters.AddWithValue("lottoNo1", lotto.LottoNo1);
+                        command.Parameters.AddWithValue("lottoNo2", lotto.LottoNo2);
+                        command.Parameters.AddWithValue("lottoNo3", lotto.LottoNo3);
+                        command.Parameters.AddWithValue("lottoNo4", lotto.LottoNo4);
+                        command.Parameters.AddWithValue("lottoNo5", lotto.LottoNo5);
+                        command.Parameters.AddWithValue("lottoNo6", lotto.LottoNo6);
+                        command.Parameters.AddWithValue("lottoBonusNo", lotto.LottoBonusNo);
+                        int result = 0;
+                        try
+                        {
+                            result = command.ExecuteNonQuery();
                         }
+                        catch (InvalidOperationException ex)
+                        {
+                            MessageBox.Show("연결 실패 \n" + ex.Message);
+                        }
+                        break;
+                    }
+                    else if (item.GetAttributeValue("class", "Not Found") == "page-error")
+                    {
+                        check = true;
                         break;
                     }
                 }
                 winningDateNumber++;
             }
             connection.Close();
-            
+
         }
 
         //DB의 저장프로시저의 빈번한 사용을 대비한 저장프로시저 Command 메서드.
@@ -165,7 +165,7 @@ namespace GoodLuckLottos
         {
             DisplayAll();
             lottoGridView.DataSource = lottoList;
-        } 
+        }
         #endregion
 
         //차트버튼클릭이벤트 - 예준
@@ -199,7 +199,7 @@ namespace GoodLuckLottos
         {
             caseCount = new int[5];
             rangeArr = new string[5];
-            
+
             formColorStatistics.chartPie.Series[0].Name = "LottoChartPie";
             formColorStatistics.chartPie.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             formColorStatistics.chartPie.Series[0].LabelForeColor = Color.White;
@@ -219,7 +219,7 @@ namespace GoodLuckLottos
             countAll = caseCount[0] + caseCount[1] + caseCount[2] + caseCount[3] + caseCount[4];
             for (int i = 0; i < rangeArr.Length; i++)
             {
-                rangeArr[i] = (Math.Round((double)caseCount[i] / countAll * 100, 1, MidpointRounding.AwayFromZero))+"%";
+                rangeArr[i] = (Math.Round((double)caseCount[i] / countAll * 100, 1, MidpointRounding.AwayFromZero)) + "%";
             }
             formColorStatistics.chartPie.Series[0].Points.DataBindXY(rangeArr, caseCount);
             //원형 차트의 범례 설정.
@@ -287,7 +287,7 @@ namespace GoodLuckLottos
             {
                 var xValue = rangeName[hit.PointIndex];
                 var yValue = (hit.Object as DataPoint).YValues[0];
-                toolTipChartPie.Show(xValue + " 번\n" + yValue +"("+Math.Round((yValue / countAll *100), 1,MidpointRounding.AwayFromZero) + "%)" ,formColorStatistics.chartPie, new Point(currentPosition.X + 10, currentPosition.Y + 15));
+                toolTipChartPie.Show(xValue + " 번\n" + yValue + "(" + Math.Round((yValue / countAll * 100), 1, MidpointRounding.AwayFromZero) + "%)", formColorStatistics.chartPie, new Point(currentPosition.X + 10, currentPosition.Y + 15));
             }
         }
 
@@ -301,16 +301,16 @@ namespace GoodLuckLottos
         {
             FrmMenu4 fm4 = new FrmMenu4(lottoList);
 
-            fm4.ShowDialog(); 
+            fm4.ShowDialog();
         }
 
-       
-        
+
+
 
 
         private void btnOddeorEven_Click(object sender, EventArgs e)
         {
-            
+
             LottoOddorEven loe = new LottoOddorEven(lottoList);
             loe.Show();
 
@@ -341,7 +341,7 @@ namespace GoodLuckLottos
             doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             XmlNode root = doc.CreateElement("Lottos");
             doc.AppendChild(root);
-            if (lottoList.Count>0)
+            if (lottoList.Count > 0)
             {
                 foreach (var item in lottoList)
                 {
@@ -378,7 +378,7 @@ namespace GoodLuckLottos
                     lotto.AppendChild(bonusNo);
                 }
             }
-            
+
             if (lottoSaveDlg.ShowDialog() != DialogResult.Cancel)
             {
                 string fileName = lottoSaveDlg.FileName;
