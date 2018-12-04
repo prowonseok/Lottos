@@ -166,7 +166,12 @@ namespace GoodLuckLottos
         //차트버튼클릭이벤트 - 예준
         private void btnColorStatistics_Click(object sender, EventArgs e)
         {
-            if (!(formColorStatistics == null || !formColorStatistics.Visible))
+            if (lottoList.Count < 1)
+            {
+                MessageBox.Show("로또를 우선 출력해주세요!");
+                return;
+            }
+            else if (!(formColorStatistics == null || !formColorStatistics.Visible))
             {
                 formColorStatistics.Focus();
                 return;
