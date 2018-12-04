@@ -163,7 +163,7 @@ namespace GoodLuckLottos
         }
         #endregion
 
-        //차트버튼클릭이벤트 - 예준
+        //색상별 통계 차트버튼클릭이벤트 - 예준
         private void btnColorStatistics_Click(object sender, EventArgs e)
         {
             if (lottoList.Count < 1)
@@ -199,7 +199,6 @@ namespace GoodLuckLottos
         {
             caseCount = new int[5];
             rangeArr = new string[5];
-
             formColorStatistics.chartPie.Series[0].Name = "LottoChartPie";
             formColorStatistics.chartPie.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             formColorStatistics.chartPie.Series[0].LabelForeColor = Color.White;
@@ -209,7 +208,6 @@ namespace GoodLuckLottos
             foreach (var item in lottoList)
             {
                 //item의 Lotto1~6까지의 멤버변수에서 1~10까지의 값이 나올때 caseCount ++ 하기
-                //caseCount[0] = RangeCount(caseCount[0], item, 0, 11);
                 caseCount[0] = Counter(caseCount[0], item, 0, 11, false);
                 caseCount[1] = Counter(caseCount[1], item, 10, 21, false);
                 caseCount[2] = Counter(caseCount[2], item, 20, 31, false);
