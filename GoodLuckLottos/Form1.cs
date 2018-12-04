@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using HtmlAgilityPack;
 using System.Xml;
 
 namespace GoodLuckLottos
@@ -69,7 +68,7 @@ namespace GoodLuckLottos
             while (!check)
             {
                 string html = "https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + winningDateNumber;
-                HtmlAgilityPack.HtmlWeb htmlWeb = new HtmlAgilityPack.HtmlWeb();
+                HtmlWeb htmlWeb = new HtmlWeb();
                 HtmlAgilityPack.HtmlDocument htmlDoc = htmlWeb.Load(html);
                 HtmlNode body = htmlDoc.DocumentNode.SelectSingleNode("//body");
                 //1회~835회까지 읽어온다
@@ -80,7 +79,7 @@ namespace GoodLuckLottos
                 {
                     if (item.GetAttributeValue("class", "Not Found") == "win_result")
                     {
-                        if (String.IsNullOrEmpty(item.ChildNodes["h4"].SelectSingleNode("strong").InnerText)/*string.IsNullOrEmpty(item.ChildNodes["p"].SelectSingleNode("img").GetAttributeValue("alt", "not found"))*/)
+                        if (String.IsNullOrEmpty(item.ChildNodes["h4"].SelectSingleNode("strong").InnerText))
                         {
                             check = true;
                         }
@@ -88,31 +87,34 @@ namespace GoodLuckLottos
                         {
                             Lotto lotto = new Lotto
                             {
-                                WinningDateNo = Int32.Parse(item.ChildNodes["h4"].SelectSingleNode("strong").InnerText.Replace("회", "")),
-                                LottoNo1 = Int32.Parse(item.ChildNodes["div"].FirstChild.SelectSingleNode("p").SelectNodes("span")[0].InnerText)
+                                WinningDateNo = Int32.Parse((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1)),
+                                LottoNo1 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText),
+                                LottoNo2 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[1].InnerText),
+                                LottoNo3 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[2].InnerText),
+                                LottoNo4 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[3].InnerText),
+                                LottoNo5 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[4].InnerText),
+                                LottoNo6 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[5].InnerText),
+                                LottoBonusNo = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[1].ChildNodes["p"].SelectSingleNode("span").InnerText)
                             };
-                            ////Lotto lotto = new Lotto(Convert.ToInt32(item.ChildNodes["h3"].FirstChild.InnerText), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[0].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[1].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[2].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[3].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[4].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[5].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].ChildNodes[15].FirstChild.GetAttributeValue("alt", "not found")));
+                            SqlCommand command = ConnectProcedure();
+                            command.CommandText = "InsertbyLottoNo";
 
-
-                            //SqlCommand command = ConnectProcedure();
-                            //command.CommandText = "InsertbyLottoNo";
-
-                            //command.Parameters.AddWithValue("lottoNo1", lotto.LottoNo1);
-                            //command.Parameters.AddWithValue("lottoNo2", lotto.LottoNo2);
-                            //command.Parameters.AddWithValue("lottoNo3", lotto.LottoNo3);
-                            //command.Parameters.AddWithValue("lottoNo4", lotto.LottoNo4);
-                            //command.Parameters.AddWithValue("lottoNo5", lotto.LottoNo5);
-                            //command.Parameters.AddWithValue("lottoNo6", lotto.LottoNo6);
-                            //command.Parameters.AddWithValue("lottoBonusNo", lotto.LottoBonusNo);
-                            //int result = 0;
-                            //try
-                            //{
-                            //    result = command.ExecuteNonQuery();
-                            //}
-                            //catch (InvalidOperationException ex)
-                            //{
-                            //    MessageBox.Show("연결 실패 \n" + ex.Message);
-                            //}
+                            command.Parameters.AddWithValue("lottoNo1", lotto.LottoNo1);
+                            command.Parameters.AddWithValue("lottoNo2", lotto.LottoNo2);
+                            command.Parameters.AddWithValue("lottoNo3", lotto.LottoNo3);
+                            command.Parameters.AddWithValue("lottoNo4", lotto.LottoNo4);
+                            command.Parameters.AddWithValue("lottoNo5", lotto.LottoNo5);
+                            command.Parameters.AddWithValue("lottoNo6", lotto.LottoNo6);
+                            command.Parameters.AddWithValue("lottoBonusNo", lotto.LottoBonusNo);
+                            int result = 0;
+                            try
+                            {
+                                result = command.ExecuteNonQuery();
+                            }
+                            catch (InvalidOperationException ex)
+                            {
+                                MessageBox.Show("연결 실패 \n" + ex.Message);
+                            }
                         }
                         break;
                     }
