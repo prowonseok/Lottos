@@ -30,11 +30,16 @@ namespace GoodLuckLottos
                 this.lottoRotation1.Items.Add(item.WinningDateNo);
                 this.lottoRotation2.Items.Add(item.WinningDateNo);
             }
-            button1_Click_1(null, null);
+            //button1_Click_1(null, null);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            bool bonusCheck = false;
+            if (chbBonusCheck.Text=="포함")
+            {
+                bonusCheck = true;
+            }
             if (Int32.Parse(lottoRotation2.Text)< Int32.Parse(lottoRotation1.Text))
             {
                 MessageBox.Show("앞자리 숫자가 뒷자리 숫자보다 클 수 없습니다.");
@@ -44,7 +49,7 @@ namespace GoodLuckLottos
             {
                 lottoList.Reverse();
             }
-            int[] lottoNum = new int[46]; //배열에 공별로 값 누적 
+            int[] lottoNum = new int[46]; //배열에 공별로 값 누적               
 
             for (int i = Int32.Parse(this.lottoRotation1.Text) - 1; i <= Int32.Parse(this.lottoRotation2.Text) - 1; i++)//~회차부터 ~회차까지 반복
             {
@@ -53,6 +58,10 @@ namespace GoodLuckLottos
                     if (j == lottoList[i].LottoNo1 || j == lottoList[i].LottoNo2 || j == lottoList[i].LottoNo3 || j == lottoList[i].LottoNo4 || j == lottoList[i].LottoNo5 || j == lottoList[i].LottoNo6)
                     {
                         lottoNum[0] = 0;
+                        lottoNum[j]++;
+                    }
+                    if (bonusCheck && j==lottoList[i].LottoBonusNo)
+                    {
                         lottoNum[j]++;
                     }
                 }
@@ -65,10 +74,11 @@ namespace GoodLuckLottos
             string[] lottoTry = new string[46];
             string[] reverseLottoTry = new string[47];
             lottoTry[1] = "회차";
-
+          
+            
             foreach (var item in lottoNum)
-            {
-                lottoTry[a ] = item.ToString(); //Lines프로퍼티 사용하기위해 스트링배열에 다시 누적               
+            {                
+                lottoTry[a] = item.ToString(); //Lines프로퍼티 사용하기위해 스트링배열에 다시 누적               
                 lottoChart.Series[0].Points.AddXY(a, Int32.Parse(item.ToString()));//당첨된 공번호 누적값 차트에 표시
                 a++;
             }

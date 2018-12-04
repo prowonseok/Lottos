@@ -33,6 +33,14 @@ namespace GoodLuckLottos
         private void Form1_Load(object sender, EventArgs e)
         {
             DisplayAll();
+            BringToFront();
+            btnMenu7.BringToFront();
+            btnOddeorEven.BringToFront();
+            btnOcrPerSec.BringToFront();
+            btnMenu4.BringToFront();
+            btnMenu6.BringToFront();
+            btnStatistics.BringToFront();
+            btnColorStatistics.BringToFront();
         }
 
         //SqlDbConnection 클래스에서 싱글톤 객체를 받아와 DB를 Open 하는 메서드
@@ -320,6 +328,7 @@ namespace GoodLuckLottos
         {
             LottoStatistics r = new LottoStatistics(lottoList);
             r.Show();
+            
         }
 
         private void btnMenu7_Click(object sender, EventArgs e)
