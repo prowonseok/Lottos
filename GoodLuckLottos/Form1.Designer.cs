@@ -40,6 +40,7 @@
             this.btnStatistics = new System.Windows.Forms.Button();
             this.btnXml = new System.Windows.Forms.Button();
             this.lottoSaveDlg = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -174,7 +175,6 @@
             this.Controls.Add(this.btnSave);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -197,6 +197,7 @@
         private System.Windows.Forms.Button btnStatistics;
         private System.Windows.Forms.Button btnXml;
         private System.Windows.Forms.SaveFileDialog lottoSaveDlg;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

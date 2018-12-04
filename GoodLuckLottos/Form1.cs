@@ -29,11 +29,6 @@ namespace GoodLuckLottos
         {
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //Form1이 Load 될 때 화면에 DB의 내용을 출력.
-            DisplayAll();
-        }
 
         //SqlDbConnection 클래스에서 싱글톤 객체를 받아와 DB를 Open 하는 메서드
         private void ConnectDb()
@@ -379,6 +374,11 @@ namespace GoodLuckLottos
                     bonusNo.InnerText = item.LottoBonusNo.ToString();
                     lotto.AppendChild(bonusNo);
                 }
+            }
+            else
+            {
+                MessageBox.Show("변환할 Lotto번호가 없습니다!");
+                return;
             }
 
             //저장경로를 유저가 지정해 줄 수 있도록 SaveFileDialog를 이용.
