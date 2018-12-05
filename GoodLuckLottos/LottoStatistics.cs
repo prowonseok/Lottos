@@ -35,12 +35,13 @@ namespace GoodLuckLottos
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            bool bonusCheck = false;
+            
+            bool bonusCheck = false; //보너스번호 체크판단 
             if (chbBonusCheck.Text=="포함")
             {
                 bonusCheck = true;
             }
-            if (Int32.Parse(lottoRotation2.Text)< Int32.Parse(lottoRotation1.Text))
+            if (Int32.Parse(lottoRotation2.Text)< Int32.Parse(lottoRotation1.Text)) //회차구간 예외처리
             {
                 MessageBox.Show("앞자리 숫자가 뒷자리 숫자보다 클 수 없습니다.");
                 return;
@@ -86,12 +87,14 @@ namespace GoodLuckLottos
             a = 1; //카운트 초기화
             int lottotry = lottoTry.Count() - 1;
             reverseLottoTry[0] = "당첨 횟수";
+
             for (int i = lottotry; i > -1; i--) //당첨공번호 누적값 거꾸로 다시저장
             {
                 reverseLottoTry[a] = lottoTry[i];
                 a++;
             }
             txtLotto.Lines = reverseLottoTry; // Text박스에 당첨횟수 출력
+            lottoChart.DataSource = null;
 
         }
     }

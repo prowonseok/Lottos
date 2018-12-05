@@ -66,11 +66,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="..\..\Users\GDI-11\Desktop\직박구리\Form1.cs">
       <SubType>Form</SubType>
+      <Link>Form1.cs</Link>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="..\..\Users\GDI-11\Desktop\직박구리\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+      <Link>Form1.Designer.cs</Link>
     </Compile>
     <Compile Include="FormColorStatistics.cs">
       <SubType>Form</SubType>
@@ -123,8 +125,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SqlDbConnection.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="..\..\Users\GDI-11\Desktop\직박구리\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <Link>Form1.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="FormColorStatistics.resx">
       <DependentUpon>FormColorStatistics.cs</DependentUpon>
