@@ -26,6 +26,13 @@ namespace GoodLuckLottos
 
         private void FormOccurrencesPerSection_Load(object sender, EventArgs e)
         {
+            if (lottoList.Count<1)
+            {
+                MessageBox.Show("로또를 우선 출력해주세요!");
+                this.Close();
+                return;
+                
+            }
             string[] period = { "5주간", "10주간", "15주간" };
             cbxPerid.Items.AddRange(period);
             cbxPerid.DropDownStyle = ComboBoxStyle.DropDownList;

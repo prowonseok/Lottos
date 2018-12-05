@@ -13,6 +13,8 @@ namespace GoodLuckLottos
     public partial class FrmMenu4 : Form
     {
         List<Lotto> lottoList = new List<Lotto>();
+
+        //원래 리스트 먹기
         public FrmMenu4(List<Lotto> lottoList)
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace GoodLuckLottos
                 weekNum = 5;
             }
 
-
+            //1부터 45 저장 후 여기서 삭제 남는거 출력
             List<string> numList = new List<string>();
             for (int i = 1; i < 46; i++)
             {
@@ -56,8 +58,8 @@ namespace GoodLuckLottos
                 lottoList[countNum].LottoNo3.ToString(),
                 lottoList[countNum].LottoNo4.ToString(),
                 lottoList[countNum].LottoNo5.ToString(),
-                lottoList[countNum].LottoNo6.ToString(),
-                lottoList[countNum].LottoBonusNo.ToString()};
+                lottoList[countNum].LottoNo6.ToString() };
+                //lottoList[countNum].LottoBonusNo.ToString()};
 
 
                 for (int i = 0; i < listList.Length; i++)

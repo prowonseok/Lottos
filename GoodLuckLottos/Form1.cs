@@ -11,8 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using HtmlAgilityPack;
-
+using System.Xml;
 
 namespace GoodLuckLottos
 {
@@ -24,15 +23,11 @@ namespace GoodLuckLottos
         SqlConnection connection;
         SqlDataReader sdr;
         List<Lotto> lottoList = new List<Lotto>();
-        
+        XmlTextWriter xmlTextWriter;
         private int winningDateNumber = 1;
         public Form1()
         {
             InitializeComponent();
-        }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            DisplayAll();
         }
 
         //SqlDbConnection 클래스에서 싱글톤 객체를 받아와 DB를 Open 하는 메서드
@@ -68,27 +63,36 @@ namespace GoodLuckLottos
             sdr.Close();
             while (!check)
             {
-                string html = "http://nlotto.co.kr/gameResult.do?method=byWin&drwNo=" + winningDateNumber;
-                HtmlAgilityPack.HtmlWeb htmlWeb = new HtmlAgilityPack.HtmlWeb();
+                string html = "https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + winningDateNumber;
+                HtmlWeb htmlWeb = new HtmlWeb();
                 HtmlAgilityPack.HtmlDocument htmlDoc = htmlWeb.Load(html);
                 HtmlNode body = htmlDoc.DocumentNode.SelectSingleNode("//body");
                 //1회~835회까지 읽어온다
                 //만약 다음회차가 없으면 회차가 없음을 출력.
                 //있으면 다음회차 읽어와 DB에 저장
                 //1회차만 읽어와 클래스에 저장. 
-                foreach (var item in body.SelectNodes("//div")/*htmlDoc.DocumentNode.SelectNodes("//div")*/)
+                foreach (var item in body.SelectNodes("//div"))
                 {
-                    if (item.GetAttributeValue("class", "Not Found") == "lotto_win_number mt12")
+                    if (item.GetAttributeValue("class", "Not Found") == "win_result")
                     {
-                        if (string.IsNullOrEmpty(item.ChildNodes["p"].SelectSingleNode("img").GetAttributeValue("alt", "not found")))
+                        if (string.IsNullOrEmpty(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText))
                         {
                             check = true;
                         }
                         else
                         {
-                            Lotto lotto = new Lotto(Convert.ToInt32(item.ChildNodes["h3"].FirstChild.InnerText), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[0].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[1].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[2].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[3].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[4].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].SelectNodes("img")[5].GetAttributeValue("alt", "not found")), Convert.ToInt32(item.ChildNodes["p"].ChildNodes[15].FirstChild.GetAttributeValue("alt", "not found")));
-
-
+                            check = false;
+                            Lotto lotto = new Lotto
+                            {
+                                WinningDateNo = Int32.Parse((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1)),
+                                LottoNo1 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText),
+                                LottoNo2 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[1].InnerText),
+                                LottoNo3 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[2].InnerText),
+                                LottoNo4 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[3].InnerText),
+                                LottoNo5 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[4].InnerText),
+                                LottoNo6 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[5].InnerText),
+                                LottoBonusNo = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[1].ChildNodes["p"].SelectSingleNode("span").InnerText)
+                            };
                             SqlCommand command = ConnectProcedure();
                             command.CommandText = "InsertbyLottoNo";
 
@@ -115,7 +119,7 @@ namespace GoodLuckLottos
                 winningDateNumber++;
             }
             connection.Close();
-            lottoGridView.DataSource = lottoList;
+
         }
 
         //DB의 저장프로시저의 빈번한 사용을 대비한 저장프로시저 Command 메서드.
@@ -149,22 +153,28 @@ namespace GoodLuckLottos
             }
             sdr.Close();
             connection.Close();
+
             //리스트를 내림차순으로 정렬.(가장 최근의 값부터 출력된다.)
             lottoList.Reverse();
-            lottoGridView.DataSource = lottoList;
         }
 
         //전체 출력하는 메서드.
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             DisplayAll();
-        } 
+            lottoGridView.DataSource = lottoList;
+        }
         #endregion
 
-        //차트버튼클릭이벤트 - 예준
+        //색상별 통계 차트버튼클릭이벤트 - 예준
         private void btnColorStatistics_Click(object sender, EventArgs e)
         {
-            if (!(formColorStatistics == null || !formColorStatistics.Visible))
+            if (lottoList.Count < 1)
+            {
+                MessageBox.Show("로또를 우선 출력해주세요!");
+                return;
+            }
+            else if (!(formColorStatistics == null || !formColorStatistics.Visible))
             {
                 formColorStatistics.Focus();
                 return;
@@ -192,7 +202,6 @@ namespace GoodLuckLottos
         {
             caseCount = new int[5];
             rangeArr = new string[5];
-            
             formColorStatistics.chartPie.Series[0].Name = "LottoChartPie";
             formColorStatistics.chartPie.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             formColorStatistics.chartPie.Series[0].LabelForeColor = Color.White;
@@ -202,7 +211,6 @@ namespace GoodLuckLottos
             foreach (var item in lottoList)
             {
                 //item의 Lotto1~6까지의 멤버변수에서 1~10까지의 값이 나올때 caseCount ++ 하기
-                //caseCount[0] = RangeCount(caseCount[0], item, 0, 11);
                 caseCount[0] = Counter(caseCount[0], item, 0, 11, false);
                 caseCount[1] = Counter(caseCount[1], item, 10, 21, false);
                 caseCount[2] = Counter(caseCount[2], item, 20, 31, false);
@@ -212,7 +220,7 @@ namespace GoodLuckLottos
             countAll = caseCount[0] + caseCount[1] + caseCount[2] + caseCount[3] + caseCount[4];
             for (int i = 0; i < rangeArr.Length; i++)
             {
-                rangeArr[i] = (Math.Round((double)caseCount[i] / countAll * 100, 1, MidpointRounding.AwayFromZero))+"%";
+                rangeArr[i] = (Math.Round((double)caseCount[i] / countAll * 100, 1, MidpointRounding.AwayFromZero)) + "%";
             }
             formColorStatistics.chartPie.Series[0].Points.DataBindXY(rangeArr, caseCount);
             //원형 차트의 범례 설정.
@@ -279,7 +287,7 @@ namespace GoodLuckLottos
             {
                 var xValue = rangeName[hit.PointIndex];
                 var yValue = (hit.Object as DataPoint).YValues[0];
-                toolTipChartPie.Show(xValue + " 번\n" + yValue +"("+Math.Round((yValue / countAll *100), 1,MidpointRounding.AwayFromZero) + "%)" ,formColorStatistics.chartPie, new Point(currentPosition.X + 10, currentPosition.Y + 15));
+                toolTipChartPie.Show(xValue + " 번\n" + yValue + "(" + Math.Round((yValue / countAll * 100), 1, MidpointRounding.AwayFromZero) + "%)", formColorStatistics.chartPie, new Point(currentPosition.X + 10, currentPosition.Y + 15));
             }
         }
 
@@ -293,11 +301,11 @@ namespace GoodLuckLottos
         {
             FrmMenu4 fm4 = new FrmMenu4(lottoList);
 
-            fm4.ShowDialog(); 
+            fm4.ShowDialog();
         }
         private void btnOddeorEven_Click(object sender, EventArgs e)
         {
-            
+
             LottoOddorEven loe = new LottoOddorEven(lottoList);
             loe.Show();
 
@@ -322,6 +330,75 @@ namespace GoodLuckLottos
         {
             FrmMenu8 fm8 = new FrmMenu8(lottoList);
             fm8.Show();
+        }
+        //현재 리스트의 내용을 XML파일로 생성하는 버튼의 이벤트핸들러. --> 예준
+        private void btnXml_Click(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlNode root = doc.CreateElement("Lottos");
+            doc.AppendChild(root);
+            //리스트에 내용이 있을 때만 반복한다.
+            if (lottoList.Count > 0)
+            {
+                foreach (var item in lottoList)
+                {
+                    XmlElement lotto = doc.CreateElement("Lotto");
+                    lotto.SetAttribute("WindateNo", item.WinningDateNo.ToString());
+                    root.AppendChild(lotto);
+
+                    XmlElement no1 = doc.CreateElement("No1");
+                    no1.InnerText = item.LottoNo1.ToString();
+                    lotto.AppendChild(no1);
+
+                    XmlElement no2 = doc.CreateElement("No2");
+                    no2.InnerText = item.LottoNo2.ToString();
+                    lotto.AppendChild(no2);
+
+                    XmlElement no3 = doc.CreateElement("No3");
+                    no3.InnerText = item.LottoNo3.ToString();
+                    lotto.AppendChild(no3);
+
+                    XmlElement no4 = doc.CreateElement("No4");
+                    no4.InnerText = item.LottoNo4.ToString();
+                    lotto.AppendChild(no4);
+
+                    XmlElement no5 = doc.CreateElement("No5");
+                    no5.InnerText = item.LottoNo5.ToString();
+                    lotto.AppendChild(no5);
+
+                    XmlElement no6 = doc.CreateElement("No6");
+                    no6.InnerText = item.LottoNo6.ToString();
+                    lotto.AppendChild(no6);
+
+                    XmlElement bonusNo = doc.CreateElement("BonusNo");
+                    bonusNo.InnerText = item.LottoBonusNo.ToString();
+                    lotto.AppendChild(bonusNo);
+                }
+            }
+            else
+            {
+                MessageBox.Show("변환할 Lotto번호가 없습니다!");
+                return;
+            }
+
+            //저장경로를 유저가 지정해 줄 수 있도록 SaveFileDialog를 이용.
+            if (lottoSaveDlg.ShowDialog() != DialogResult.Cancel)
+            {
+                string fileName = lottoSaveDlg.FileName;
+                try
+                {
+                    xmlTextWriter = new XmlTextWriter(fileName, Encoding.UTF8);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                xmlTextWriter.Formatting = Formatting.Indented;
+                doc.WriteContentTo(xmlTextWriter);
+                xmlTextWriter.Flush();
+                xmlTextWriter.Close();
+            }
         }
     }
 }

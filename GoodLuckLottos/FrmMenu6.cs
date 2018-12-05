@@ -59,7 +59,6 @@ namespace GoodLuckLottos
                         numList.Add(item.LottoNo5); numList.Add(item.LottoNo6);
 
                         numList.Sort();
-
                         List<string> numList2 = new List<string>();
                         foreach (var item4 in numList)
                         {
@@ -149,7 +148,6 @@ namespace GoodLuckLottos
                 }
 
             }
-
             dataGridView1.DataSource = lottosTable;
         }
     }
