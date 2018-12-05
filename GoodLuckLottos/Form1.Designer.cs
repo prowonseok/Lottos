@@ -38,20 +38,15 @@
             this.btnMenu7 = new System.Windows.Forms.Button();
             this.btnOcrPerSec = new System.Windows.Forms.Button();
             this.btnStatistics = new System.Windows.Forms.Button();
-<<<<<<< HEAD
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-=======
-            this.btnMenu8 = new System.Windows.Forms.Button();
-            this.btnXml = new System.Windows.Forms.Button();
             this.lottoSaveDlg = new System.Windows.Forms.SaveFileDialog();
->>>>>>> 5758562b634be78c5644497459649e829ef194c9
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(24, 583);
+            this.btnSave.Location = new System.Drawing.Point(24, 491);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(78, 23);
             this.btnSave.TabIndex = 3;
@@ -62,15 +57,15 @@
             // lottoGridView
             // 
             this.lottoGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.lottoGridView.Location = new System.Drawing.Point(12, 325);
+            this.lottoGridView.Location = new System.Drawing.Point(24, 12);
             this.lottoGridView.Name = "lottoGridView";
             this.lottoGridView.RowTemplate.Height = 23;
-            this.lottoGridView.Size = new System.Drawing.Size(397, 229);
+            this.lottoGridView.Size = new System.Drawing.Size(726, 440);
             this.lottoGridView.TabIndex = 12;
             // 
             // btnSelectAll
             // 
-            this.btnSelectAll.Location = new System.Drawing.Point(130, 583);
+            this.btnSelectAll.Location = new System.Drawing.Point(181, 491);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(78, 23);
             this.btnSelectAll.TabIndex = 13;
@@ -80,7 +75,7 @@
             // 
             // btnColorStatistics
             // 
-            this.btnColorStatistics.Location = new System.Drawing.Point(795, 106);
+            this.btnColorStatistics.Location = new System.Drawing.Point(1152, 104);
             this.btnColorStatistics.Name = "btnColorStatistics";
             this.btnColorStatistics.Size = new System.Drawing.Size(93, 32);
             this.btnColorStatistics.TabIndex = 14;
@@ -90,39 +85,27 @@
             // 
             // btnMenu4
             // 
-            this.btnMenu4.Location = new System.Drawing.Point(795, 261);
+            this.btnMenu4.Location = new System.Drawing.Point(1152, 263);
             this.btnMenu4.Name = "btnMenu4";
-<<<<<<< HEAD
             this.btnMenu4.Size = new System.Drawing.Size(93, 32);
             this.btnMenu4.TabIndex = 15;
             this.btnMenu4.Text = "자세히보기";
-=======
-            this.btnMenu4.Size = new System.Drawing.Size(144, 23);
-            this.btnMenu4.TabIndex = 15;
-            this.btnMenu4.Text = "기간별 미 출현 번호";
->>>>>>> 5758562b634be78c5644497459649e829ef194c9
             this.btnMenu4.UseVisualStyleBackColor = true;
             this.btnMenu4.Click += new System.EventHandler(this.btnMenu4_Click);
             // 
             // btnMenu6
             // 
-            this.btnMenu6.Location = new System.Drawing.Point(795, 417);
+            this.btnMenu6.Location = new System.Drawing.Point(793, 420);
             this.btnMenu6.Name = "btnMenu6";
-<<<<<<< HEAD
             this.btnMenu6.Size = new System.Drawing.Size(93, 32);
             this.btnMenu6.TabIndex = 16;
             this.btnMenu6.Text = "연속번호출현";
-=======
-            this.btnMenu6.Size = new System.Drawing.Size(144, 23);
-            this.btnMenu6.TabIndex = 16;
-            this.btnMenu6.Text = "연속번호 출현";
->>>>>>> 5758562b634be78c5644497459649e829ef194c9
             this.btnMenu6.UseVisualStyleBackColor = true;
             this.btnMenu6.Click += new System.EventHandler(this.btnMenu6_Click);
             // 
             // btnOddeorEven
             // 
-            this.btnOddeorEven.Location = new System.Drawing.Point(440, 417);
+            this.btnOddeorEven.Location = new System.Drawing.Point(1152, 420);
             this.btnOddeorEven.Name = "btnOddeorEven";
             this.btnOddeorEven.Size = new System.Drawing.Size(93, 32);
             this.btnOddeorEven.TabIndex = 18;
@@ -132,23 +115,17 @@
             // 
             // btnMenu7
             // 
-            this.btnMenu7.Location = new System.Drawing.Point(440, 574);
+            this.btnMenu7.Location = new System.Drawing.Point(793, 583);
             this.btnMenu7.Name = "btnMenu7";
-<<<<<<< HEAD
             this.btnMenu7.Size = new System.Drawing.Size(93, 32);
             this.btnMenu7.TabIndex = 17;
             this.btnMenu7.Text = "자세히보기";
-=======
-            this.btnMenu7.Size = new System.Drawing.Size(144, 23);
-            this.btnMenu7.TabIndex = 17;
-            this.btnMenu7.Text = "패턴분석표";
->>>>>>> 5758562b634be78c5644497459649e829ef194c9
             this.btnMenu7.UseVisualStyleBackColor = true;
             this.btnMenu7.Click += new System.EventHandler(this.btnMenu7_Click);
             // 
             // btnOcrPerSec
             // 
-            this.btnOcrPerSec.Location = new System.Drawing.Point(440, 261);
+            this.btnOcrPerSec.Location = new System.Drawing.Point(793, 263);
             this.btnOcrPerSec.Name = "btnOcrPerSec";
             this.btnOcrPerSec.Size = new System.Drawing.Size(93, 32);
             this.btnOcrPerSec.TabIndex = 17;
@@ -158,7 +135,7 @@
             // 
             // btnStatistics
             // 
-            this.btnStatistics.Location = new System.Drawing.Point(440, 106);
+            this.btnStatistics.Location = new System.Drawing.Point(793, 104);
             this.btnStatistics.Name = "btnStatistics";
             this.btnStatistics.Size = new System.Drawing.Size(93, 32);
             this.btnStatistics.TabIndex = 19;
@@ -166,54 +143,22 @@
             this.btnStatistics.UseVisualStyleBackColor = true;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
-<<<<<<< HEAD
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GoodLuckLottos.Properties.Resources.Menu;
-            this.pictureBox1.Location = new System.Drawing.Point(415, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(767, 15);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(701, 624);
+            this.pictureBox1.Size = new System.Drawing.Size(713, 624);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
-=======
-            // btnMenu8
-            // 
-            this.btnMenu8.Location = new System.Drawing.Point(678, 375);
-            this.btnMenu8.Name = "btnMenu8";
-            this.btnMenu8.Size = new System.Drawing.Size(92, 23);
-            this.btnMenu8.TabIndex = 20;
-            this.btnMenu8.Text = "맞춰보기";
-            this.btnMenu8.UseVisualStyleBackColor = true;
-            this.btnMenu8.Click += new System.EventHandler(this.btnMenu8_Click);
-            // 
-            // btnXml
-            // 
-            this.btnXml.Location = new System.Drawing.Point(509, 375);
-            this.btnXml.Name = "btnXml";
-            this.btnXml.Size = new System.Drawing.Size(123, 23);
-            this.btnXml.TabIndex = 20;
-            this.btnXml.Text = "Xml변환";
-            this.btnXml.UseVisualStyleBackColor = true;
-            this.btnXml.Click += new System.EventHandler(this.btnXml_Click);
-            // 
-            // lottoSaveDlg
-            // 
-            this.lottoSaveDlg.Filter = "xml 파일|*.xml";
->>>>>>> 5758562b634be78c5644497459649e829ef194c9
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(1128, 640);
+            this.ClientSize = new System.Drawing.Size(1492, 772);
             this.Controls.Add(this.pictureBox1);
-=======
-            this.ClientSize = new System.Drawing.Size(800, 463);
-            this.Controls.Add(this.btnMenu8);
-            this.Controls.Add(this.btnXml);
->>>>>>> 5758562b634be78c5644497459649e829ef194c9
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnOddeorEven);
             this.Controls.Add(this.btnMenu7);
@@ -247,16 +192,8 @@
 
         private System.Windows.Forms.Button btnOcrPerSec;
         private System.Windows.Forms.Button btnStatistics;
-<<<<<<< HEAD
         private System.Windows.Forms.PictureBox pictureBox1;
-=======
-
-        private System.Windows.Forms.Button btnMenu8;
-
-        private System.Windows.Forms.Button btnXml;
         private System.Windows.Forms.SaveFileDialog lottoSaveDlg;
-
->>>>>>> 5758562b634be78c5644497459649e829ef194c9
     }
 }
 

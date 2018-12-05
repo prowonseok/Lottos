@@ -23,7 +23,7 @@ namespace GoodLuckLottos
 
         private void LottoOddorEven_Load(object sender, EventArgs e)
         {
-            this.Text = "홀짝 통계";
+            
             foreach (var item in lottoList) //시작 회차
             {
                 this.lottoRotation1.Items.Add(item.WinningDateNo);                

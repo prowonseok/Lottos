@@ -22,8 +22,7 @@ namespace GoodLuckLottos
         }
 
         private void LottoStatistics_Load(object sender, EventArgs e)
-        {
-            this.Text = "번호별 통계";
+        {           
             this.txtLotto.Clear();    
             
             foreach (var item in lottoList) //시작 회차
@@ -31,7 +30,7 @@ namespace GoodLuckLottos
                 this.lottoRotation1.Items.Add(item.WinningDateNo);
                 this.lottoRotation2.Items.Add(item.WinningDateNo);
             }
-            button1_Click_1(null, null);
+            //button1_Click_1(null, null);
         }
 
         private void button1_Click_1(object sender, EventArgs e)

@@ -26,7 +26,6 @@ namespace GoodLuckLottos
 
         private void FormOccurrencesPerSection_Load(object sender, EventArgs e)
         {
-            this.Text = "구간별 출현횟수";
             if (lottoList.Count<1)
             {
                 MessageBox.Show("로또를 우선 출력해주세요!");

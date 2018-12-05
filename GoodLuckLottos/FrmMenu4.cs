@@ -17,9 +17,7 @@ namespace GoodLuckLottos
         //원래 리스트 먹기
         public FrmMenu4(List<Lotto> lottoList)
         {
-            
             InitializeComponent();
-            this.Text = "기간별 미 출현 번호";
             this.lottoList = lottoList;
         }
 

@@ -11,12 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-<<<<<<< HEAD
-
-
-=======
 using System.Xml;
->>>>>>> 5758562b634be78c5644497459649e829ef194c9
 
 namespace GoodLuckLottos
 {
@@ -34,7 +29,6 @@ namespace GoodLuckLottos
         {
             InitializeComponent();
         }
-<<<<<<< HEAD
         private void Form1_Load(object sender, EventArgs e)
         {
             DisplayAll();
@@ -47,8 +41,6 @@ namespace GoodLuckLottos
             btnStatistics.BringToFront();
             btnColorStatistics.BringToFront();
         }
-=======
->>>>>>> 5758562b634be78c5644497459649e829ef194c9
 
         //SqlDbConnection 클래스에서 싱글톤 객체를 받아와 DB를 Open 하는 메서드
         private void ConnectDb()
@@ -109,11 +101,7 @@ namespace GoodLuckLottos
                             check = false;
                             Lotto lotto = new Lotto
                             {
-<<<<<<< HEAD
                                 WinningDateNo = Int32.Parse(((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1))),
-=======
-                                WinningDateNo = Int32.Parse((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1)),
->>>>>>> 851a5b62d35cc21f9d6b53efaf2959004b80bedc
                                 LottoNo1 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText),
                                 LottoNo2 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[1].InnerText),
                                 LottoNo3 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[2].InnerText),
@@ -144,10 +132,6 @@ namespace GoodLuckLottos
                         }
                         break;
                     }
-<<<<<<< HEAD
-                    
-=======
->>>>>>> 851a5b62d35cc21f9d6b53efaf2959004b80bedc
                 }
                 winningDateNumber++;
             }
