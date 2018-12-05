@@ -101,8 +101,6 @@ namespace GoodLuckLottos
 
                                     }
 
-
-
                                 }
                                 else
                                 {

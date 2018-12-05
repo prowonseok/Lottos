@@ -142,10 +142,5 @@ namespace GoodLuckLottos
             }
 
         }
-
-        private void FrmMenu4_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

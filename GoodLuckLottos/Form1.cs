@@ -260,8 +260,7 @@ namespace GoodLuckLottos
 
             return caseCount;
         }
-
-
+        
         //툴팁 - 예준
         ToolTip toolTipChartPie = new ToolTip();
         Point? previousPosition = null;
@@ -296,11 +295,6 @@ namespace GoodLuckLottos
 
             fm4.ShowDialog(); 
         }
-
-       
-        
-
-
         private void btnOddeorEven_Click(object sender, EventArgs e)
         {
             
@@ -308,24 +302,26 @@ namespace GoodLuckLottos
             loe.Show();
 
         }
-
-
         private void btnOcrPerSec_Click(object sender, EventArgs e)
         {
             FormOccurrencesPerSection fops = new FormOccurrencesPerSection(lottoList);
             fops.Show();
         }
-
         private void btnStatistics_Click(object sender, EventArgs e)
         {
             LottoStatistics r = new LottoStatistics(lottoList);
             r.Show();
         }
-
         private void btnMenu7_Click(object sender, EventArgs e)
         {
             FormMenu7 frm7 = new FormMenu7(lottoList);
             frm7.Show();
+        }
+
+        private void btnMenu8_Click(object sender, EventArgs e)
+        {
+            FrmMenu8 fm8 = new FrmMenu8(lottoList);
+            fm8.Show();
         }
     }
 }
