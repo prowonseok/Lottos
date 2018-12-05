@@ -38,7 +38,13 @@
             this.btnMenu7 = new System.Windows.Forms.Button();
             this.btnOcrPerSec = new System.Windows.Forms.Button();
             this.btnStatistics = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+=======
+            this.btnMenu8 = new System.Windows.Forms.Button();
+            this.btnXml = new System.Windows.Forms.Button();
+            this.lottoSaveDlg = new System.Windows.Forms.SaveFileDialog();
+>>>>>>> 5758562b634be78c5644497459649e829ef194c9
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +55,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(78, 23);
             this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "저장";
+            this.btnSave.Text = "갱신";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -86,9 +92,15 @@
             // 
             this.btnMenu4.Location = new System.Drawing.Point(795, 261);
             this.btnMenu4.Name = "btnMenu4";
+<<<<<<< HEAD
             this.btnMenu4.Size = new System.Drawing.Size(93, 32);
             this.btnMenu4.TabIndex = 15;
             this.btnMenu4.Text = "자세히보기";
+=======
+            this.btnMenu4.Size = new System.Drawing.Size(144, 23);
+            this.btnMenu4.TabIndex = 15;
+            this.btnMenu4.Text = "기간별 미 출현 번호";
+>>>>>>> 5758562b634be78c5644497459649e829ef194c9
             this.btnMenu4.UseVisualStyleBackColor = true;
             this.btnMenu4.Click += new System.EventHandler(this.btnMenu4_Click);
             // 
@@ -96,9 +108,15 @@
             // 
             this.btnMenu6.Location = new System.Drawing.Point(795, 417);
             this.btnMenu6.Name = "btnMenu6";
+<<<<<<< HEAD
             this.btnMenu6.Size = new System.Drawing.Size(93, 32);
             this.btnMenu6.TabIndex = 16;
             this.btnMenu6.Text = "연속번호출현";
+=======
+            this.btnMenu6.Size = new System.Drawing.Size(144, 23);
+            this.btnMenu6.TabIndex = 16;
+            this.btnMenu6.Text = "연속번호 출현";
+>>>>>>> 5758562b634be78c5644497459649e829ef194c9
             this.btnMenu6.UseVisualStyleBackColor = true;
             this.btnMenu6.Click += new System.EventHandler(this.btnMenu6_Click);
             // 
@@ -116,9 +134,15 @@
             // 
             this.btnMenu7.Location = new System.Drawing.Point(440, 574);
             this.btnMenu7.Name = "btnMenu7";
+<<<<<<< HEAD
             this.btnMenu7.Size = new System.Drawing.Size(93, 32);
             this.btnMenu7.TabIndex = 17;
             this.btnMenu7.Text = "자세히보기";
+=======
+            this.btnMenu7.Size = new System.Drawing.Size(144, 23);
+            this.btnMenu7.TabIndex = 17;
+            this.btnMenu7.Text = "패턴분석표";
+>>>>>>> 5758562b634be78c5644497459649e829ef194c9
             this.btnMenu7.UseVisualStyleBackColor = true;
             this.btnMenu7.Click += new System.EventHandler(this.btnMenu7_Click);
             // 
@@ -142,6 +166,7 @@
             this.btnStatistics.UseVisualStyleBackColor = true;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
+<<<<<<< HEAD
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GoodLuckLottos.Properties.Resources.Menu;
@@ -151,13 +176,44 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
+=======
+            // btnMenu8
+            // 
+            this.btnMenu8.Location = new System.Drawing.Point(678, 375);
+            this.btnMenu8.Name = "btnMenu8";
+            this.btnMenu8.Size = new System.Drawing.Size(92, 23);
+            this.btnMenu8.TabIndex = 20;
+            this.btnMenu8.Text = "맞춰보기";
+            this.btnMenu8.UseVisualStyleBackColor = true;
+            this.btnMenu8.Click += new System.EventHandler(this.btnMenu8_Click);
+            // 
+            // btnXml
+            // 
+            this.btnXml.Location = new System.Drawing.Point(509, 375);
+            this.btnXml.Name = "btnXml";
+            this.btnXml.Size = new System.Drawing.Size(123, 23);
+            this.btnXml.TabIndex = 20;
+            this.btnXml.Text = "Xml변환";
+            this.btnXml.UseVisualStyleBackColor = true;
+            this.btnXml.Click += new System.EventHandler(this.btnXml_Click);
+            // 
+            // lottoSaveDlg
+            // 
+            this.lottoSaveDlg.Filter = "xml 파일|*.xml";
+>>>>>>> 5758562b634be78c5644497459649e829ef194c9
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1128, 640);
             this.Controls.Add(this.pictureBox1);
+=======
+            this.ClientSize = new System.Drawing.Size(800, 463);
+            this.Controls.Add(this.btnMenu8);
+            this.Controls.Add(this.btnXml);
+>>>>>>> 5758562b634be78c5644497459649e829ef194c9
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnOddeorEven);
             this.Controls.Add(this.btnMenu7);
@@ -170,7 +226,6 @@
             this.Controls.Add(this.btnSave);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -192,7 +247,16 @@
 
         private System.Windows.Forms.Button btnOcrPerSec;
         private System.Windows.Forms.Button btnStatistics;
+<<<<<<< HEAD
         private System.Windows.Forms.PictureBox pictureBox1;
+=======
+
+        private System.Windows.Forms.Button btnMenu8;
+
+        private System.Windows.Forms.Button btnXml;
+        private System.Windows.Forms.SaveFileDialog lottoSaveDlg;
+
+>>>>>>> 5758562b634be78c5644497459649e829ef194c9
     }
 }
 

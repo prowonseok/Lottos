@@ -39,13 +39,13 @@ namespace GoodLuckLottos
                 connect.Open();
                 // 연결성공
             }
-            catch (InvalidOperationException e)
+            catch (InvalidOperationException)
             {
-                System.Windows.Forms.MessageBox.Show("Test");
+                System.Windows.Forms.MessageBox.Show("연결실패.");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("Test1");
+                System.Windows.Forms.MessageBox.Show("연결실패.");
             }
         }
 

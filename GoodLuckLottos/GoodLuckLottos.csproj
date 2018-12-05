@@ -104,6 +104,12 @@
     <Compile Include="FormMenu7.Designer.cs">
       <DependentUpon>FormMenu7.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMenu8.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMenu8.Designer.cs">
+      <DependentUpon>FrmMenu8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lotto.cs" />
     <Compile Include="LottoOddorEven.cs">
       <SubType>Form</SubType>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenu7.resx">
       <DependentUpon>FormMenu7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMenu8.resx">
+      <DependentUpon>FrmMenu8.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LottoOddorEven.resx">
       <DependentUpon>LottoOddorEven.cs</DependentUpon>
