@@ -21,6 +21,7 @@ namespace GoodLuckLottos
 
         private void FrmMenu7_Load(object sender, EventArgs e)
         {
+            this.Text = "패턴 분석표";
             for (int i = 0; i < lottoList.Count; i++)
             {
                 cbbSearch.Items.Add(lottoList.Count - i);

@@ -16,6 +16,10 @@ namespace GoodLuckLottos
         public FrmMenu8(List<Lotto> lottoList)
         {
             InitializeComponent();
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 851a5b62d35cc21f9d6b53efaf2959004b80bedc
             this.RealLottoList = lottoList;
         }
         List<int> lottoList;
@@ -127,6 +131,10 @@ namespace GoodLuckLottos
 
         private void FrmMenu8_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+=======
+            this.Text = "로또를 맞춰보자 ^-^";
+>>>>>>> 851a5b62d35cc21f9d6b53efaf2959004b80bedc
             foreach (Control item in Controls)
             {
                 if (item.GetType().ToString() == "System.Windows.Forms.ComboBox")
