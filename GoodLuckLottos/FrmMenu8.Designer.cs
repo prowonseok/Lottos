@@ -175,7 +175,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 149);
+            this.ClientSize = new System.Drawing.Size(735, 146);
             this.Controls.Add(this.cbbCount);
             this.Controls.Add(this.txt6);
             this.Controls.Add(this.txt5);
@@ -191,7 +191,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmMenu8";
-            this.Text = "FrmMenu8";
+            this.Text = "로또를 맞춰보자 ^-^";
             this.Load += new System.EventHandler(this.FrmMenu8_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

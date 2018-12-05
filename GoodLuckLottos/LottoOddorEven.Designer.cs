@@ -33,22 +33,23 @@
             this.lottoRotation2 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridLotto)).BeginInit();
             this.SuspendLayout();
             // 
             // gridLotto
             // 
             this.gridLotto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridLotto.Location = new System.Drawing.Point(104, 86);
+            this.gridLotto.Location = new System.Drawing.Point(27, 86);
             this.gridLotto.Name = "gridLotto";
             this.gridLotto.RowTemplate.Height = 23;
-            this.gridLotto.Size = new System.Drawing.Size(701, 431);
+            this.gridLotto.Size = new System.Drawing.Size(637, 440);
             this.gridLotto.TabIndex = 0;
             // 
             // lottoRotation1
             // 
             this.lottoRotation1.FormattingEnabled = true;
-            this.lottoRotation1.Location = new System.Drawing.Point(662, 60);
+            this.lottoRotation1.Location = new System.Drawing.Point(432, 54);
             this.lottoRotation1.Name = "lottoRotation1";
             this.lottoRotation1.Size = new System.Drawing.Size(58, 20);
             this.lottoRotation1.TabIndex = 1;
@@ -57,7 +58,7 @@
             // lottoRotation2
             // 
             this.lottoRotation2.FormattingEnabled = true;
-            this.lottoRotation2.Location = new System.Drawing.Point(747, 60);
+            this.lottoRotation2.Location = new System.Drawing.Point(517, 54);
             this.lottoRotation2.Name = "lottoRotation2";
             this.lottoRotation2.Size = new System.Drawing.Size(58, 20);
             this.lottoRotation2.TabIndex = 2;
@@ -66,7 +67,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(727, 63);
+            this.label1.Location = new System.Drawing.Point(497, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 12);
             this.label1.TabIndex = 3;
@@ -74,7 +75,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(821, 60);
+            this.button1.Location = new System.Drawing.Point(591, 54);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -82,11 +83,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(370, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "회차선택";
+            // 
             // LottoOddorEven
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 547);
+            this.ClientSize = new System.Drawing.Size(694, 550);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lottoRotation2);
@@ -108,5 +119,6 @@
         private System.Windows.Forms.ComboBox lottoRotation2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
     }
 }
