@@ -54,6 +54,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -109,6 +111,12 @@
       <DependentUpon>FrmMenu8.cs</DependentUpon>
     </Compile>
     <Compile Include="Lotto.cs" />
+    <Compile Include="LottoMenu8.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LottoMenu8.Designer.cs">
+      <DependentUpon>LottoMenu8.cs</DependentUpon>
+    </Compile>
     <Compile Include="LottoOddorEven.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenu8.resx">
       <DependentUpon>FrmMenu8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LottoMenu8.resx">
+      <DependentUpon>LottoMenu8.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LottoOddorEven.resx">
       <DependentUpon>LottoOddorEven.cs</DependentUpon>

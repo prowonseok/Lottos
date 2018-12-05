@@ -41,7 +41,6 @@ namespace GoodLuckLottos
             btnStatistics.BringToFront();
             btnColorStatistics.BringToFront();
         }
-
         //SqlDbConnection 클래스에서 싱글톤 객체를 받아와 DB를 Open 하는 메서드
         private void ConnectDb()
         {

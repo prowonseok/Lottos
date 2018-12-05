@@ -146,7 +146,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GoodLuckLottos.Properties.Resources.Menu;
-            this.pictureBox1.Location = new System.Drawing.Point(767, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(767, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(713, 624);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

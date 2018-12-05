@@ -21,6 +21,7 @@ namespace GoodLuckLottos
 
         private void FrmMenu6_Load(object sender, EventArgs e)
         {
+            this.Text = "연속번호 출현";
             for (int i = 0; i < lottoList.Count; i++)
             {
                 cbbFront.Items.Add(lottoList.Count - i);
