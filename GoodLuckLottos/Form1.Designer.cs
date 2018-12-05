@@ -39,6 +39,8 @@
             this.btnOcrPerSec = new System.Windows.Forms.Button();
             this.btnStatistics = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnMenu8 = new System.Windows.Forms.Button();
+            this.btnXml = new System.Windows.Forms.Button();
             this.lottoSaveDlg = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -153,12 +155,37 @@
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
             // 
+            // btnMenu8
+            // 
+            this.btnMenu8.Location = new System.Drawing.Point(1153, 491);
+            this.btnMenu8.Name = "btnMenu8";
+            this.btnMenu8.Size = new System.Drawing.Size(92, 23);
+            this.btnMenu8.TabIndex = 20;
+            this.btnMenu8.Text = "맞춰보기";
+            this.btnMenu8.UseVisualStyleBackColor = true;
+            this.btnMenu8.Click += new System.EventHandler(this.btnMenu8_Click);
+            // 
+            // btnXml
+            // 
+            this.btnXml.Location = new System.Drawing.Point(291, 491);
+            this.btnXml.Name = "btnXml";
+            this.btnXml.Size = new System.Drawing.Size(123, 23);
+            this.btnXml.TabIndex = 20;
+            this.btnXml.Text = "Xml변환";
+            this.btnXml.UseVisualStyleBackColor = true;
+            this.btnXml.Click += new System.EventHandler(this.btnXml_Click);
+            // 
+            // lottoSaveDlg
+            // 
+            this.lottoSaveDlg.Filter = "xml 파일|*.xml";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1492, 772);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(1500, 655);
+            this.Controls.Add(this.btnMenu8);
+            this.Controls.Add(this.btnXml);
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnOddeorEven);
             this.Controls.Add(this.btnMenu7);
@@ -169,6 +196,7 @@
             this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.lottoGridView);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).EndInit();
@@ -194,6 +222,11 @@
         private System.Windows.Forms.Button btnStatistics;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.SaveFileDialog lottoSaveDlg;
+
+        private System.Windows.Forms.Button btnMenu8;
+
+        private System.Windows.Forms.Button btnXml;
+
     }
 }
 

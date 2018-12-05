@@ -100,7 +100,7 @@ namespace GoodLuckLottos
                             check = false;
                             Lotto lotto = new Lotto
                             {
-                                WinningDateNo = Int32.Parse(((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1))),
+                                WinningDateNo = Int32.Parse((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1)),
                                 LottoNo1 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText),
                                 LottoNo2 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[1].InnerText),
                                 LottoNo3 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[2].InnerText),
