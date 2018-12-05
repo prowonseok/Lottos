@@ -38,9 +38,9 @@
             this.btnMenu7 = new System.Windows.Forms.Button();
             this.btnOcrPerSec = new System.Windows.Forms.Button();
             this.btnStatistics = new System.Windows.Forms.Button();
+            this.btnMenu8 = new System.Windows.Forms.Button();
             this.btnXml = new System.Windows.Forms.Button();
             this.lottoSaveDlg = new System.Windows.Forms.SaveFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.lottoGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,9 +143,19 @@
             this.btnStatistics.UseVisualStyleBackColor = true;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
+            // btnMenu8
+            // 
+            this.btnMenu8.Location = new System.Drawing.Point(678, 375);
+            this.btnMenu8.Name = "btnMenu8";
+            this.btnMenu8.Size = new System.Drawing.Size(92, 23);
+            this.btnMenu8.TabIndex = 20;
+            this.btnMenu8.Text = "맞춰보기";
+            this.btnMenu8.UseVisualStyleBackColor = true;
+            this.btnMenu8.Click += new System.EventHandler(this.btnMenu8_Click);
+            // 
             // btnXml
             // 
-            this.btnXml.Location = new System.Drawing.Point(549, 375);
+            this.btnXml.Location = new System.Drawing.Point(509, 375);
             this.btnXml.Name = "btnXml";
             this.btnXml.Size = new System.Drawing.Size(123, 23);
             this.btnXml.TabIndex = 20;
@@ -162,6 +172,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 463);
+            this.Controls.Add(this.btnMenu8);
             this.Controls.Add(this.btnXml);
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnOddeorEven);
@@ -195,9 +206,12 @@
 
         private System.Windows.Forms.Button btnOcrPerSec;
         private System.Windows.Forms.Button btnStatistics;
+
+        private System.Windows.Forms.Button btnMenu8;
+
         private System.Windows.Forms.Button btnXml;
         private System.Windows.Forms.SaveFileDialog lottoSaveDlg;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+
     }
 }
 

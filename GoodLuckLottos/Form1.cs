@@ -89,7 +89,7 @@ namespace GoodLuckLottos
                             check = false;
                             Lotto lotto = new Lotto
                             {
-                                WinningDateNo = Int32.Parse(((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1))),
+                                WinningDateNo = Int32.Parse((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1)),
                                 LottoNo1 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText),
                                 LottoNo2 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[1].InnerText),
                                 LottoNo3 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[2].InnerText),
@@ -120,7 +120,6 @@ namespace GoodLuckLottos
                         }
                         break;
                     }
-                    
                 }
                 winningDateNumber++;
             }
@@ -159,6 +158,7 @@ namespace GoodLuckLottos
             }
             sdr.Close();
             connection.Close();
+
             //리스트를 내림차순으로 정렬.(가장 최근의 값부터 출력된다.)
             lottoList.Reverse();
         }
@@ -273,8 +273,7 @@ namespace GoodLuckLottos
 
             return caseCount;
         }
-
-
+        
         //툴팁 - 예준
         ToolTip toolTipChartPie = new ToolTip();
         Point? previousPosition = null;
@@ -309,11 +308,6 @@ namespace GoodLuckLottos
 
             fm4.ShowDialog();
         }
-
-
-
-
-
         private void btnOddeorEven_Click(object sender, EventArgs e)
         {
 
@@ -321,26 +315,27 @@ namespace GoodLuckLottos
             loe.Show();
 
         }
-
-
         private void btnOcrPerSec_Click(object sender, EventArgs e)
         {
             FormOccurrencesPerSection fops = new FormOccurrencesPerSection(lottoList);
             fops.Show();
         }
-
         private void btnStatistics_Click(object sender, EventArgs e)
         {
             LottoStatistics r = new LottoStatistics(lottoList);
             r.Show();
         }
-
         private void btnMenu7_Click(object sender, EventArgs e)
         {
             FormMenu7 frm7 = new FormMenu7(lottoList);
             frm7.Show();
         }
 
+        private void btnMenu8_Click(object sender, EventArgs e)
+        {
+            FrmMenu8 fm8 = new FrmMenu8(lottoList);
+            fm8.Show();
+        }
         //현재 리스트의 내용을 XML파일로 생성하는 버튼의 이벤트핸들러. --> 예준
         private void btnXml_Click(object sender, EventArgs e)
         {
