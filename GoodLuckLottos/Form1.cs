@@ -73,46 +73,54 @@ namespace GoodLuckLottos
                 //1회차만 읽어와 클래스에 저장. 
                 foreach (var item in body.SelectNodes("//div"))
                 {
+                    //if (item.GetAttributeValue("class", "Not Found") == "page-error")
+                    //{
+                    //    check = true;
+                    //    break;
+                    //}
                     if (item.GetAttributeValue("class", "Not Found") == "win_result")
                     {
-                        check = false;
-                        Lotto lotto = new Lotto
+                        if (string.IsNullOrEmpty(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText))
                         {
-                            WinningDateNo = Int32.Parse((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1)),
-                            LottoNo1 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText),
-                            LottoNo2 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[1].InnerText),
-                            LottoNo3 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[2].InnerText),
-                            LottoNo4 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[3].InnerText),
-                            LottoNo5 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[4].InnerText),
-                            LottoNo6 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[5].InnerText),
-                            LottoBonusNo = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[1].ChildNodes["p"].SelectSingleNode("span").InnerText)
-                        };
-                        SqlCommand command = ConnectProcedure();
-                        command.CommandText = "InsertbyLottoNo";
+                            check = true;
+                        }
+                        else
+                        {
+                            check = false;
+                            Lotto lotto = new Lotto
+                            {
+                                WinningDateNo = Int32.Parse(((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Remove((item.ChildNodes["h4"].SelectSingleNode("strong").InnerText).Length - 1, 1))),
+                                LottoNo1 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[0].InnerText),
+                                LottoNo2 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[1].InnerText),
+                                LottoNo3 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[2].InnerText),
+                                LottoNo4 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[3].InnerText),
+                                LottoNo5 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[4].InnerText),
+                                LottoNo6 = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[0].ChildNodes["p"].SelectNodes("span")[5].InnerText),
+                                LottoBonusNo = Int32.Parse(item.ChildNodes["div"].SelectNodes("div")[1].ChildNodes["p"].SelectSingleNode("span").InnerText)
+                            };
+                            SqlCommand command = ConnectProcedure();
+                            command.CommandText = "InsertbyLottoNo";
 
-                        command.Parameters.AddWithValue("lottoNo1", lotto.LottoNo1);
-                        command.Parameters.AddWithValue("lottoNo2", lotto.LottoNo2);
-                        command.Parameters.AddWithValue("lottoNo3", lotto.LottoNo3);
-                        command.Parameters.AddWithValue("lottoNo4", lotto.LottoNo4);
-                        command.Parameters.AddWithValue("lottoNo5", lotto.LottoNo5);
-                        command.Parameters.AddWithValue("lottoNo6", lotto.LottoNo6);
-                        command.Parameters.AddWithValue("lottoBonusNo", lotto.LottoBonusNo);
-                        int result = 0;
-                        try
-                        {
-                            result = command.ExecuteNonQuery();
-                        }
-                        catch (InvalidOperationException ex)
-                        {
-                            MessageBox.Show("연결 실패 \n" + ex.Message);
+                            command.Parameters.AddWithValue("lottoNo1", lotto.LottoNo1);
+                            command.Parameters.AddWithValue("lottoNo2", lotto.LottoNo2);
+                            command.Parameters.AddWithValue("lottoNo3", lotto.LottoNo3);
+                            command.Parameters.AddWithValue("lottoNo4", lotto.LottoNo4);
+                            command.Parameters.AddWithValue("lottoNo5", lotto.LottoNo5);
+                            command.Parameters.AddWithValue("lottoNo6", lotto.LottoNo6);
+                            command.Parameters.AddWithValue("lottoBonusNo", lotto.LottoBonusNo);
+                            int result = 0;
+                            try
+                            {
+                                result = command.ExecuteNonQuery();
+                            }
+                            catch (InvalidOperationException ex)
+                            {
+                                MessageBox.Show("연결 실패 \n" + ex.Message);
+                            }
                         }
                         break;
                     }
-                    else if (item.GetAttributeValue("class", "Not Found") == "page-error")
-                    {
-                        check = true;
-                        break;
-                    }
+                    
                 }
                 winningDateNumber++;
             }
